@@ -1,6 +1,6 @@
 # data-structures
 Patrick Saunders and Julien Wilson
-\n
+<br>
 Data Structures created in Python401
 
 ##Deque
