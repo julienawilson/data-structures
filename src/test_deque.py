@@ -46,7 +46,27 @@ def test_deque_append_left(empty_deque):
 
 
 def test_deque_append_left_full(full_deque):
-    """Test for append on deque."""
+    """Test for append left on deque."""
     full_deque.append_left("Last append")
     assert full_deque.head_node.contents == "Last append"
     assert full_deque.tail_node.contents == 1
+
+
+def test_pop_empty(empty_deque):
+    """Test for pop left on empty deque."""
+    assert empty_deque.pop() is None
+
+
+def test_pop_full(full_deque):
+    """Test for pop left on deque."""
+    assert full_deque.pop() == 1
+
+
+def test_pop_empty_left(empty_deque):
+    """Test for pop left on empty deque."""
+    assert empty_deque.pop_left() is None
+
+
+def test_pop_full_left(full_deque):
+    """Test for pop left on deque."""
+    assert full_deque.pop_left() == 3
