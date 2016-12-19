@@ -21,7 +21,11 @@ class Deque(object):
         self.length += 1
 
 
-    # def append_left(self):
+    def append_left(self, contents):
+        self.dll.push(contents)
+        self.head_node = self.dll.head_node
+        self.tail_node = self.dll.tail_node
+        self.length += 1
 
 
     # def pop(self):
