@@ -37,22 +37,20 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            print("Linked list is already empty")
-            return
+            return None
         old_head_node = self.head_node
         self.head_node = self.head_node.next_node
         self.length -= 1
-        return old_head_node
+        return old_head_node.contents
 
     def shift(self):
         """Remove the end of the dll."""
         if not self.tail_node:
-            print("Linked list is already empty")
-            return
+            return None
         old_tail_node = self.tail_node
         self.tail_node = self.tail_node.previous_node
         self.length -= 1
-        return old_tail_node
+        return old_tail_node.contents
 
     def remove(self, contents):
         """Remove the first node with input contents if it exists."""

@@ -28,10 +28,22 @@ class Deque(object):
         self.length += 1
 
 
-    # def pop(self):
+    def pop_left(self):
+        popped = self.dll.pop()
+        if popped is None:
+            raise ValueError
+        self.head_node = self.dll.head_node
+        self.length -= 1
+        return popped
 
 
-    # def pop_left(self):
+    def pop(self):
+        popped = self.dll.shift()
+        if popped is None:
+            raise ValueError
+        self.tail_node = self.dll.tail_node
+        self.length -= 1
+        return popped.
 
 
     # def peek(self):

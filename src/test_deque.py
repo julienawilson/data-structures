@@ -54,8 +54,8 @@ def test_deque_append_left_full(full_deque):
 
 def test_pop_empty(empty_deque):
     """Test for pop left on empty deque."""
-    assert empty_deque.pop() is None
-
+    with pytest.raises(ValueError):
+        empty_deque.pop()
 
 def test_pop_full(full_deque):
     """Test for pop left on deque."""
@@ -64,7 +64,8 @@ def test_pop_full(full_deque):
 
 def test_pop_empty_left(empty_deque):
     """Test for pop left on empty deque."""
-    assert empty_deque.pop_left() is None
+    with pytest.raises(ValueError):
+        empty_deque.pop_left()
 
 
 def test_pop_full_left(full_deque):
