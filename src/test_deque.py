@@ -1,4 +1,5 @@
 """Tests for Deque."""
+
 import pytest
 
 
@@ -92,3 +93,13 @@ def test_peek_empty_left(empty_deque):
 def test_peek_full_left(full_deque):
     """Test for peek left on deque."""
     assert full_deque.peek_left() == 3
+
+
+def test_size_empty(empty_deque):
+    """Test for size on empty deque."""
+    assert empty_deque.size() == 0
+
+
+def test_size_full(full_deque):
+    """Test for size on deque with nodes."""
+    assert full_deque.size() is 3
