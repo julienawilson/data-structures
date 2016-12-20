@@ -7,14 +7,16 @@ import pytest
 def empty_heap():
     """Fixture for easy creation of an empty heap."""
     from binheap import Binheap
-    return Binheap()
+    empty_heap = Binheap()
+    return empty_heap
 
 
 @pytest.fixture()
 def full_heap():
     """Fixture for easy creation of a populated heap."""
     from binheap import Binheap
-    return Binheap([1, 3, 4, 5, 6, 7, 8, 9])
+    full_heap = Binheap([1, 3, 4, 5, 6, 7, 8, 9])
+    return full_heap
 
 
 def test_empty_init(empty_heap):
@@ -33,7 +35,7 @@ def test_empty_push(empty_heap):
     assert empty_heap.bin_list == [1]
 
 
-def test_full_push(empty_heap):
+def test_full_push(full_heap):
     """Test that push adds values to a populated list and sorts."""
     full_heap.push(2)
-    assert full_heap.bin_list == [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    assert full_heap.bin_list == [1, 2, 4, 3, 6, 7, 8, 9, 5]
