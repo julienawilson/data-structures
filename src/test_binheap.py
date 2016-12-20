@@ -39,3 +39,15 @@ def test_full_push(full_heap):
     """Test that push adds values to a populated list and sorts."""
     full_heap.push(2)
     assert full_heap.bin_list == [1, 2, 4, 3, 6, 7, 8, 9, 5]
+
+
+def test_full_pop(full_heap):
+    """Test .pop() on a full heap."""
+    full_heap.pop()
+    assert full_heap.bin_list == [3, 5, 4, 9, 6, 7, 8]
+
+
+def test_empty_pop(empty_heap):
+    """Test .pop() on a full heap."""
+    with pytest.raises(ValueError):
+        empty_heap.pop()
