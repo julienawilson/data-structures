@@ -10,4 +10,17 @@ class PriorityQueue(object):
     """
 
     def __init__(self, iterable=None):
-        passdef
+        """Initialize the Priority Queue."""
+        self._pq_list = []
+        if hasattr(iterable, "__iter__"):
+            self.bin_list = [i for i in iterable]
+            self._sort()
+
+    def _sort(self):
+        """Sort the priority queue first by priority, then longest residency."""
+        prio_nums = list(set([item[1] for item in self._pq_list]))
+        result = []
+        for priority in prio_nums:
+            this_list = [item for item in self._pq_list if item[1] == priority]
+            result += this_list
+        return result
