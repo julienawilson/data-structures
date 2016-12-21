@@ -11,17 +11,13 @@ class PriorityQueue(object):
 
     def __init__(self, iterable=None):
         """Initialize the Priority Queue."""
-        self._pq_list = []
+        self._pq_dict = {}
         if hasattr(iterable, "__iter__"):
-            self._pq_list = [i for i in iterable]
-            self._pq_list = self._sort()
+            for val in iterable:
+                self.insert(val[0], priority=val[1])
 
-    def _sort(self):
-        """Sort the priority queue first by priority, then longest residency."""
-        prio_nums = list(set([item[0] for item in self._pq_list])).sort()
-        import pdb; pdb.set_trace()
-        result = []
-        for priority in prio_nums:
-            this_list = [item for item in self._pq_list if item[0] == priority]
-            result += this_list
-        return result
+    def insert(self, value, priority=0):
+        """Insert values and priorities in to priority queue."""
+        if not self._pq_dict[priority]:
+            self._pq_dict[priority] = []
+        self._pq_dict[priority].append(value)
