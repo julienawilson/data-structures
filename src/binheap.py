@@ -48,7 +48,6 @@ class Binheap(object):
                 except IndexError:
                     break
         elif self.style == 'max':
-            import pdb; pdb.set_trace()
             while i < len(self.bin_list):
                 try:
                     if self.bin_list[i] < self.bin_list[2 * i + 1]:
