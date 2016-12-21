@@ -18,9 +18,9 @@ class PriorityQueue(object):
 
     def _sort(self):
         """Sort the priority queue first by priority, then longest residency."""
-        prio_nums = list(set([item[1] for item in self._pq_list]))
+        prio_nums = list(set([item[0] for item in self._pq_list]))
         result = []
         for priority in prio_nums:
-            this_list = [item for item in self._pq_list if item[1] == priority]
+            this_list = [item for item in self._pq_list if item[0] == priority]
             result += this_list
         return result
