@@ -18,6 +18,6 @@ class PriorityQueue(object):
 
     def insert(self, value, priority=0):
         """Insert values and priorities in to priority queue."""
-        if not self._pq_dict[priority]:
-            self._pq_dict[priority] = []
-        self._pq_dict[priority].append(value)
+        if str(priority) not in self._pq_dict.keys():
+            self._pq_dict[str(priority)] = []
+        self._pq_dict[str(priority)].append(value)
