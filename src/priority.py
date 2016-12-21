@@ -13,12 +13,13 @@ class PriorityQueue(object):
         """Initialize the Priority Queue."""
         self._pq_list = []
         if hasattr(iterable, "__iter__"):
-            self.bin_list = [i for i in iterable]
-            self._sort()
+            self._pq_list = [i for i in iterable]
+            self._pq_list = self._sort()
 
     def _sort(self):
         """Sort the priority queue first by priority, then longest residency."""
-        prio_nums = list(set([item[0] for item in self._pq_list]))
+        prio_nums = list(set([item[0] for item in self._pq_list])).sort()
+        import pdb; pdb.set_trace()
         result = []
         for priority in prio_nums:
             this_list = [item for item in self._pq_list if item[0] == priority]
