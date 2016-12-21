@@ -14,7 +14,7 @@ class PriorityQueue(object):
         self._pq_dict = {}
         if hasattr(iterable, "__iter__"):
             for val in iterable:
-                self.insert(val[0], priority=val[1])
+                self.insert(val[1], priority=val[0])
 
     def insert(self, value, priority=0):
         """Insert values and priorities in to priority queue."""
