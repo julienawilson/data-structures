@@ -19,6 +19,14 @@ def full_heap():
     return full_heap
 
 
+@pytest.fixture()
+def max_heap():
+    """Fixture for easy creation of a populated heap."""
+    from binheap import Binheap
+    max_heap = Binheap(iterable=[1, 3, 4, 5, 6, 7, 8, 9], style="max")
+    return max_heap
+
+
 def test_empty_init(empty_heap):
     """Test that the empty heap is initiated."""
     assert empty_heap.bin_list == []
@@ -51,3 +59,8 @@ def test_empty_pop(empty_heap):
     """Test .pop() on a full heap."""
     with pytest.raises(ValueError):
         empty_heap.pop()
+
+
+def test_max_init(max_heap):
+    """Test init on a max type binheap."""
+    assert max_heap.bin_list == [9, 8, 7, 5, 4, 3, 6, 1]

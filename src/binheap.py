@@ -15,7 +15,7 @@ class Binheap(object):
         self.bin_list = []
         if hasattr(iterable, "__iter__"):
             self.bin_list = [i for i in iterable]
-            self.bin_list.sort()
+            self._sort()
 
     def push(self, value):
         """Push value to end of list and then run sorting algorithm."""
@@ -48,6 +48,7 @@ class Binheap(object):
                 except IndexError:
                     break
         elif self.style == 'max':
+            import pdb; pdb.set_trace()
             while i < len(self.bin_list):
                 try:
                     if self.bin_list[i] < self.bin_list[2 * i + 1]:
