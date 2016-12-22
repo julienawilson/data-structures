@@ -24,12 +24,16 @@ class PriorityQueue(object):
 
     def pop(self):
         """Remove the highest priority item, returns its value."""
-        if len(self._pq_dict.keys()) == 0:
-            raise KeyError("The Priority Queue is already empty.")
-        hi_pri = sorted(self._pq_dict.keys())[0]
-        pop_val = self._pq_dict[hi_pri][0]
+        pop_val = self.peek()
         if len(self._pq_dict[hi_pri]) == 1:
             del self._pq_dict[hi_pri]
         else:
             self._pq_dict[hi_pri] = self._pq_dict[hi_pri][1:]
+        return pop_val
+
+    def peek(self):
+         if len(self._pq_dict.keys()) == 0:
+            raise KeyError("The Priority Queue is empty.")
+        hi_pri = sorted(self._pq_dict.keys())[0]
+        pop_val = self._pq_dict[hi_pri][0]
         return pop_val
