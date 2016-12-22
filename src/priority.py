@@ -18,6 +18,18 @@ class PriorityQueue(object):
 
     def insert(self, value, priority=0):
         """Insert values and priorities in to priority queue."""
-        if str(priority) not in self._pq_dict.keys():
-            self._pq_dict[str(priority)] = []
-        self._pq_dict[str(priority)].append(value)
+        if priority not in self._pq_dict.keys():
+            self._pq_dict[priority] = []
+        self._pq_dict[priority].append(value)
+
+    def pop(self):
+        """Remove the highest priority item, returns its value."""
+        if len(self._pq_dict.keys()) == 0:
+            raise KeyError("The Priority Queue is already empty.")
+        hi_pri = sorted(self._pq_dict.keys())[0]
+        pop_val = self._pq_dict[hi_pri][0]
+        if len(self._pq_dict[hi_pri]) == 1:
+            del self._pq_dict[hi_pri]
+        else:
+            self._pq_dict[hi_pri] = self._pq_dict[hi_pri][1:]
+        return pop_val
