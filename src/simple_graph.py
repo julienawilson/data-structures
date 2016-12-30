@@ -1,7 +1,7 @@
 """Simple Graph Data Structure."""
 
 
-class Graph(object):
+class SimpleGraph(object):
     """A simple graph class.
 
     .nodes(): return a list of all nodes in the graph
@@ -33,6 +33,7 @@ class Graph(object):
 
     def edges(self):
         """return a list of all edges in the graph"""
+        return self.edges_list
 
     def add_node(self, n):
         """adds a new node ‘n’ to the graph"""
