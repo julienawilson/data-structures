@@ -32,20 +32,33 @@ class SimpleGraph(object):
         return self.node_dict.keys()
 
     def edges(self):
-        """return a list of all edges in the graph"""
+        """Return a list of all edges in the graph."""
         return self.edges_list
 
     def add_node(self, n):
-        """adds a new node ‘n’ to the graph"""
+        """Add a new node ‘n’ to the graph."""
+        self.node_dict[n] = []
 
     def add_edge(self, n1, n2):
-        """adds a new edge to the graph connecting ‘n1’ and ‘n2’,
-        if either n1 or n2 are not already present in the graph, they should
-        be added."""
+        """Add a new edge to the graph connecting ‘n1’ and ‘n2’, add 'n1' and 'n2' if necessary."""
+        if n1 not in self.node_dict:
+            self.add_node(n1)
+        if n2 not in self.node_dict:
+            self.add_node(n2)
+        self.node_dict[n1].append(n2)
+        self.edges_list.append((n1, n2))
 
     def del_node(self, n):
-        """deletes the node ‘n’ from the graph, raises an error if no
-        such node exists"""
+        """Delete the node ‘n’ from the graph, raises an error if no
+        such node exists."""
+        if n in self.node_dict.keys:
+            del self.node_dict[n]
+        for key in self.node_dict:
+            if n in self.node_dict[key]:
+                self.node_dict[key].remove(n)
+        for edge in self.edges_list:
+            if edge[0] == n or edge[1] == n:
+                self.edges_list.remove(edge)
 
     def del_edge(self, n1, n2):
         """deletes the edge connecting ‘n1’ and ‘n2’ from the
