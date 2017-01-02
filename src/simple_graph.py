@@ -51,7 +51,7 @@ class SimpleGraph(object):
     def del_node(self, n):
         """Delete the node ‘n’ from the graph, raises an error if no
         such node exists."""
-        if n in self.node_dict.keys:
+        if n in self.node_dict.keys():
             del self.node_dict[n]
         for key in self.node_dict:
             if n in self.node_dict[key]:
@@ -63,6 +63,13 @@ class SimpleGraph(object):
     def del_edge(self, n1, n2):
         """deletes the edge connecting ‘n1’ and ‘n2’ from the
         graph, raises an error if no such edge exists"""
+        if (n1, n2) not in self.edges_list:
+            raise ValueError('This edge does not exist.')
+        self.edges_list.remove((n1, n2))
+        if n1 in self.node_dict.keys():
+            if n2 in self.node_dict[n1]:
+                self.node_dict[n1].remove(n2)
+
 
     def has_node(self, n):
         """True if node ‘n’ is contained in the graph, False if not."""
