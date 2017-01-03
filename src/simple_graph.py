@@ -61,7 +61,7 @@ class SimpleGraph(object):
                 self.edges_list.remove(edge)
 
     def del_edge(self, n1, n2):
-        """deletes the edge connecting ‘n1’ and ‘n2’ from the
+        """Delete the edge connecting ‘n1’ and ‘n2’ from the
         graph, raises an error if no such edge exists"""
         if (n1, n2) not in self.edges_list:
             raise ValueError('This edge does not exist.')
@@ -70,22 +70,21 @@ class SimpleGraph(object):
             if n2 in self.node_dict[n1]:
                 self.node_dict[n1].remove(n2)
 
-
     def has_node(self, n):
         """True if node ‘n’ is contained in the graph, False if not."""
-        return n in self.node_dict.keys():
+        return n in self.node_dict.keys()
 
     def neighbors(self, n):
-        """returns the list of all nodes connected to ‘n’ by edges,
-        raises an error if n is not in g"""
+        """Return the list of all nodes connected to ‘n’ by edges,
+        raises an error if n is not in g."""
         if n not in self.node_dict.keys():
             raise ValueError('You have chosen a node which does not exist')
         return self.node_dict[n]
 
     def adjacent(self, n1, n2):
-        """returns True if there is an edge connecting n1 and n2,
+        """Return True if there is an edge connecting n1 and n2,
         False if not, raises an error if either of the supplied nodes are not
-        in g"""
+        in g."""
         if n1 not in self.node_dict.keys() or n2 not in self.node_dict.keys():
             raise ValueError('You have chosen a node which does not exist')
         return n2 in self.node_dict[n1]

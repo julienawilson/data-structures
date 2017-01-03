@@ -107,3 +107,58 @@ def test_del_edge_dict(gr):
     assert 'b' not in gr.node_dict['a']
 
 
+def test_has_node(gr):
+    """Test that has_node() returns true when node exists."""
+    gr.add_node('val1')
+    assert gr.has_node('val1')
+
+
+def test_has_node_neg(gr):
+    """Test that has_node()returns negative when node doesn't exist."""
+    gr.add_node('val1')
+    assert not gr.has_node('val2')
+
+
+def test_empty_has_node_neg(gr):
+    """Test that has_node()returns negative on empty graph."""
+    assert not gr.has_node('val2')
+
+
+def test_neighbors_returns_list_of_neighbors(gr):
+    """Test that neightbors() returns a list of the nodes neighbors."""
+    gr.add_edge('a', 'b')
+    gr.add_edge('a', 'c')
+    gr.add_edge('a', 'd')
+    assert gr.neighbors('a') == ['b', 'c', 'd']
+
+
+def test_empty_neghbors(gr):
+    """Test Neighbors returns empty list when node has no neighbors."""
+    gr.add_node('a')
+    assert gr.neighbors('a') == []
+
+
+def test_neghbors_invalid_node(gr):
+    """Test Neighbors returns error when node does not exist."""
+    with pytest.raises(ValueError):
+        gr.neighbors('a')
+
+
+def test_adjacent_true(gr):
+    """Test that adjacent returns true when first node points to second."""
+    gr.add_edge('a', 'b')
+    assert gr.adjacent('a', 'b')
+
+
+def test_adjacent_false(gr):
+    """Test that adjacent returns false if nodes not connected."""
+    gr.add_node('d')
+    gr.add_node('e')
+    assert not gr.adjacent('d', 'e')
+
+
+def test_adjacent_invalid_node(gr):
+    """Test that adjacent raises ValueError if one node does not exist."""
+    gr.add_node('c')
+    with pytest.raises(ValueError):
+        gr.adjacent('c', 'f')
