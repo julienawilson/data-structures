@@ -4,7 +4,7 @@ Patrick Saunders and Julien Wilson
 Data Structures created in Python401
 
 ##Simple Graph
-A directional unweighted graph that supports breadth and depth first traversals.
+A directional weighted graph that supports breadth and depth first traversals.
 
 ##Binary heap:
 binheap.py provides a binary heap class with push() and pop() methods.
