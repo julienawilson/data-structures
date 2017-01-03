@@ -60,7 +60,7 @@ def test_add_edge_empty(gr):
 def test_add_edge_recorded(gr):
     """Test that adding an edge is properly recorded in a seperate list."""
     gr.add_edge('a', 'b')
-    assert gr.edges_list == [('a', 'b')]
+    assert gr.edges_list == [('a', 'b', 1)]
 
 
 def test_add_edge_existing(gr):
@@ -68,7 +68,7 @@ def test_add_edge_existing(gr):
     gr.add_node('val1')
     gr.add_node('val2')
     gr.add_edge('val1', 'val2')
-    assert gr.node_dict['val1'] == ['val2']
+    assert gr.node_dict['val1'] == [('val2', 1)]
 
 
 def test_add_edge_existing_recorded(gr):
@@ -76,7 +76,7 @@ def test_add_edge_existing_recorded(gr):
     gr.add_node('val1')
     gr.add_node('val2')
     gr.add_edge('val1', 'val2')
-    assert gr.edges_list == [('val1', 'val2')]
+    assert gr.edges_list == [('val1', 'val2', 1)]
 
 
 def test_del_nodes(gr):
