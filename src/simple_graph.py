@@ -99,7 +99,6 @@ class SimpleGraph(object):
                 head = trav_list.pop()
                 if head not in path:
                     path.append(head)
-                    # import pdb; pdb.set_trace()
                     trav_list.extend(self.node_dict[head][::-1])
             return path
         except KeyError:
