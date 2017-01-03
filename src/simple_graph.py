@@ -1,4 +1,5 @@
 """Simple Graph Data Structure."""
+from queue import Queue
 
 
 class SimpleGraph(object):
@@ -106,14 +107,14 @@ class SimpleGraph(object):
     def breadth_first_traversal(self, start):
         """Perform a breadth first graph traversal, return the path."""
         try:
-            trav_list = [start]  # make this a queue
+            trav_list = Queue([start])  # make this a queue
             path = []
-            while trav_list:
+            while trav_list.peek():
                 head = trav_list.dequeue()  # check this method name
                 if head not in path:
                     path.append(head)
                     for item in self.node_dict[head]:
                         trav_list.enqueue(item)
             return path
-        except KeyError:
+        except IndexError:
             raise KeyError('That node does not exist')

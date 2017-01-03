@@ -175,6 +175,18 @@ def test_depth_first_trav(gr):
     assert gr.depth_first_traversal(1) == [1, 2, 4, 5, 3, 6, 7]
 
 
+def test_depth_first_trav_irregular(gr):
+    """Test that depth first traversal returns proper list with irregular graph."""
+    gr.add_edge(1, 2)
+    gr.add_edge(1, 3)
+    gr.add_edge(2, 4)
+    gr.add_edge(2, 5)
+    gr.add_edge(3, 6)
+    gr.add_edge(3, 7)
+    gr.add_edge(4, 3)
+    assert gr.depth_first_traversal(1) == [1, 2, 4, 3, 6, 7, 5]
+
+
 def test_depth_first_trav_error_empty(gr):
     """Test that depth first traversal returns error in empty graph."""
     with pytest.raises(KeyError):
@@ -191,3 +203,44 @@ def test_depth_first_trav_no_head(gr):
     gr.add_edge(3, 7)
     with pytest.raises(KeyError):
         gr.depth_first_traversal(12)
+
+
+def test_breadth_first_trav(gr):
+    """Test that breadth first traversal returns proper list."""
+    gr.add_edge(1, 2)
+    gr.add_edge(1, 3)
+    gr.add_edge(2, 4)
+    gr.add_edge(2, 5)
+    gr.add_edge(3, 6)
+    gr.add_edge(3, 7)
+    assert gr.breadth_first_traversal(1) == [1, 2, 3, 4, 5, 6, 7]
+
+
+def test_breadth_first_trav_irregular(gr):
+    """Test that breadth first traversal returns proper list on irregular graph."""
+    gr.add_edge(1, 2)
+    gr.add_edge(1, 3)
+    gr.add_edge(2, 4)
+    gr.add_edge(2, 5)
+    gr.add_edge(3, 6)
+    gr.add_edge(3, 7)
+    gr.add_edge(5, 3)
+    assert gr.breadth_first_traversal(1) == [1, 2, 3, 4, 5, 6, 7]
+
+
+def test_breadth_first_trav_error_empty(gr):
+    """Test that breadth first traversal returns error in empty graph."""
+    with pytest.raises(KeyError):
+        gr.breadth_first_traversal(12)
+
+
+def test_breadth_first_trav_no_head(gr):
+    """Test that breadth first traversal returns error when head not there."""
+    gr.add_edge(1, 2)
+    gr.add_edge(1, 3)
+    gr.add_edge(2, 4)
+    gr.add_edge(2, 5)
+    gr.add_edge(3, 6)
+    gr.add_edge(3, 7)
+    with pytest.raises(KeyError):
+        gr.breadth_first_traversal(12)
