@@ -93,6 +93,7 @@ class SimpleGraph(object):
     def depth_first_traversal(self, start):
         """Performs a depth first traversal from start."""
         trav_list = [start]
+        path = set()
         head = start
         while True:
         counter = 0
