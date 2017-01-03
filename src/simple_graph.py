@@ -73,12 +73,20 @@ class SimpleGraph(object):
 
     def has_node(self, n):
         """True if node ‘n’ is contained in the graph, False if not."""
+        return n in self.node_dict.keys():
 
     def neighbors(self, n):
         """returns the list of all nodes connected to ‘n’ by edges,
         raises an error if n is not in g"""
+        if n not in self.node_dict.keys():
+            raise ValueError('You have chosen a node which does not exist')
+        return self.node_dict[n]
 
     def adjacent(self, n1, n2):
         """returns True if there is an edge connecting n1 and n2,
         False if not, raises an error if either of the supplied nodes are not
         in g"""
+        if n1 not in self.node_dict.keys() or n2 not in self.node_dict.keys():
+            raise ValueError('You have chosen a node which does not exist')
+        return n2 in self.node_dict[n1]
+

@@ -105,3 +105,5 @@ def test_del_edge_dict(gr):
     gr.add_edge('a', 'b')
     gr.del_edge('a', 'b')
     assert 'b' not in gr.node_dict['a']
+
+
