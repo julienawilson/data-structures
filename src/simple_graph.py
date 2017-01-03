@@ -94,7 +94,6 @@ class SimpleGraph(object):
         try:
             trav_list = [start]
             path = []
-            # head = start
             while trav_list:
                 head = trav_list.pop()
                 if head not in path:
@@ -104,17 +103,17 @@ class SimpleGraph(object):
         except KeyError:
             raise KeyError('That node does not exist')
 
-            # try
-            #     if self.node_dict[head][counter] not in trav_list:
-            #         head = self.node_dict[head][counter]
-            #         trav_list.append(head)
-            #         continue
-            #     counter += 1
-            # except IndexError:
-            #     head
-
-            # for i in range(len(self.node_dict[start])):
-            #     if self.node_dict[start][i] not in trav_list:
-            #         trav_list.append(self.node_dict[start][i])
-            #         head = self.node_dict[start][i]
-            #     head = self.node_dict[start][i - 1]
+    def breadth_first_traversal(self, start):
+        """Perform a breadth first graph traversal, return the path."""
+        try:
+            trav_list = [start]  # make this a queue
+            path = []
+            while trav_list:
+                head = trav_list.dequeue()  # check this method name
+                if head not in path:
+                    path.append(head)
+                    for item in self.node_dict[head]:
+                        trav_list.enqueue(item)
+            return path
+        except KeyError:
+            raise KeyError('That node does not exist')
