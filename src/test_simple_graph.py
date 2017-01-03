@@ -63,6 +63,20 @@ def test_add_edge_recorded(gr):
     assert gr.edges_list == [('a', 'b', 1)]
 
 
+def test_add_weighted_edge(gr):
+    """Test that adding a weighted edge is properly recorded in a seperate list."""
+    gr.add_edge('a', 'b', 4)
+    assert gr.edges_list == [('a', 'b', 4)]
+
+
+def test_add_weighted_edge_existing(gr):
+    """Test adding an edge to existing nodes."""
+    gr.add_node('val1')
+    gr.add_node('val2')
+    gr.add_edge('val1', 'val2', 4)
+    assert gr.node_dict['val1'] == [('val2', 4)]
+
+
 def test_add_edge_existing(gr):
     """Test adding an edge to existing nodes."""
     gr.add_node('val1')
