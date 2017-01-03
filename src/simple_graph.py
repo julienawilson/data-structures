@@ -89,3 +89,28 @@ class SimpleGraph(object):
             raise ValueError('You have chosen a node which does not exist')
         return n2 in self.node_dict[n1]
 
+
+    def depth_first_traversal(self, start):
+        """Performs a depth first traversal from start."""
+        trav_list = [start]
+        head = start
+        while True:
+        counter = 0
+            try
+                if self.node_dict[head][counter] not in trav_list:
+                    head = self.node_dict[head][counter]
+                    trav_list.append(head)
+                    continue
+                counter += 1
+            except IndexError:
+                head
+
+            for i in range(len(self.node_dict[start])):
+                if self.node_dict[start][i] not in trav_list:
+                    trav_list.append(self.node_dict[start][i])
+                    head = self.node_dict[start][i]
+                head = self.node_dict[start][i - 1]
+
+
+
+
