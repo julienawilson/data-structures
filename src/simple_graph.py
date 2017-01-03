@@ -99,6 +99,7 @@ class SimpleGraph(object):
                 head = trav_list.pop()
                 if head not in path:
                     path.append(head)
+                    # import pdb; pdb.set_trace()
                     trav_list.extend(self.node_dict[head][::-1])
             return path
         except KeyError:
@@ -118,3 +119,29 @@ class SimpleGraph(object):
             return path
         except IndexError:
             raise KeyError('That node does not exist')
+
+
+if __name__ == "__main__":
+
+    import timeit
+
+    def build_graph():
+        """Build a randomly created graph to test."""
+        import random
+        test_graph = SimpleGraph()
+        for i in range(100):
+            test_graph.add_edge(random.randint(1, 50), random.randint(1, 50))
+        return test_graph
+    g = build_graph()
+
+    print(timeit.repeat(stmt='g.depth_first_traversal(random.choice(list(g.node_dict.keys())))',
+                        setup='from __main__ import SimpleGraph, g, random', repeat=3,
+                        number=1000
+                        )
+          )
+
+    print(timeit.repeat(stmt='g.breadth_first_traversal(random.choice(list(g.node_dict.keys())))',
+                        setup='from __main__ import SimpleGraph, g, random', repeat=3,
+                        number=1000
+                        )
+          )
