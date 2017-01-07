@@ -1,25 +1,43 @@
 """Shortest path between two nodes in a graph."""
 
-from simple_graph import SimpleGraph
 import math
 
 
 def dijkstra_path(graph, start, end):
     """Shortest path using Dijkstra's algorithm."""
     path_table = {}
+    node_dict = {}
+    # try:
+    #     infinity = math.inf
+    # except:
+    infinity = float("inf")
     for node in graph.nodes():
-        path_table[node] = [None, math.inf]
-    node_list = graph.breadth_first_traversal(start)
-    for node in node_list:
-        for edge in graph.node_dict[node]:
-            total_to_node = edge[1] + path_table[node][1]
-            if total_to_node < path_table[edge[0]][1]:
-                path_table[edge[0]][1] = total_to_node
-                path_table[edge[0]][0] = node
+        path_table[node] = [None, infinity]
+        node_dict[node] = infinity
+    path_table[start][1] = 0
+    node_dict[start] = 0
+    while node_dict:
+        shortest_dist_node = min(node_dict, key=node_dict.get)
+        current_node_val = shortest_dist_node
+        if current_node_val == end:
+            break
+        node_dict.pop(current_node_val)
+
+        for child in graph.neighbors(current_node_val):
+
+            current_node_distance = path_table[current_node_val][1]
+            for edge in graph.node_dict[current_node_val]:
+                if edge[0] == child:
+                    edge_length = edge[1]
+            trial_distance = current_node_distance + edge_length
+            if trial_distance < path_table[child][1]:
+                path_table[child][1] = trial_distance
+                node_dict[child] = trial_distance
+                path_table[child][0] = current_node_val
     current = end
     total_length = path_table[end][1]
     path_list = [current]
     while current is not start:
         path_list.append(path_table[current][0])
         current = path_table[current][0]
-    return "Total length: {{}}, Path: {{}}""".format(total_length, path_list.reverse())
+    return "Total length: {}, Path: {}""".format(total_length, path_list[::-1])

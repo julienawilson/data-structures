@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 """Simple Graph Data Structure."""
 from queue import Queue
 
