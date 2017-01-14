@@ -13,9 +13,9 @@ def a_star(graph, start, end):
         node_dict[node] = infinity
     path_table[start][1] = 0  # gscore value
     # fscore value
-    path_table[start][2] = heuristic_cost_estimate(start, end)
+    path_table[start][2] = heuristic_cost_estimate(start, end, node_dict)
     # fscore vlaue in open table
-    node_dict[start] = heuristic_cost_estimate(start, end)
+    node_dict[start] = heuristic_cost_estimate(start, end, node_dict)
 
     while node_dict:
 
@@ -40,7 +40,7 @@ def a_star(graph, start, end):
             trial_distance = current_node_distance + edge_length
             if trial_distance < path_table[child][1]:
                 path_table[child][1] = trial_distance
-                node_dict[child] = trial_distance + heuristic_cost_estimate(start, end)
+                node_dict[child] = trial_distance + heuristic_cost_estimate(start, end, node_dict)
                 path_table[child][0] = current_node_val
                 path_table[child][2] = node_dict[child]
 
@@ -53,6 +53,6 @@ def a_star(graph, start, end):
     return "Total length: {}, Path: {}""".format(total_length, path_list[::-1])
 
 
-def heuristic_cost_estimate(start, end):
+def heuristic_cost_estimate(start, end, node_dict):
     """Hold problem-specific heuristic."""
-    return 1
+    return len(node_dict)
