@@ -63,3 +63,8 @@ class BinarySearchTree():
                 else:
                     return None
 
+    def size(self):
+        """Return the size of the BST."""
+        return self.size
+
+    
