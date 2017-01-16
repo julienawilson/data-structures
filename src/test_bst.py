@@ -62,6 +62,13 @@ def test_insert_in_empty_tree_establishes_root():
     assert b_tree.root.value == 17
 
 
+def test_insert_in_empty_tree_updates_size():
+    """Test that insert on empty tree increments size."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(43)
+    assert b_tree.size == 1
+
+
 def test_inserting_lower_val_pushes_left():
     """Test that inserting lower value creates left branch."""
     b_tree = BinarySearchTree()
@@ -78,10 +85,18 @@ def test_inserting_higher_val_pushes_right():
     assert b_tree.root.right.value == 20
 
 def test_inserting_less_but_more_into_populated_tree(small_tree):
+    """Test inserting lower value that would push left then right."""
     small_tree.insert(43)
     assert small_tree.root.left.right.value == 43
 
 
 def test_inserting_lower_item_into_populated_tree(small_tree):
+    """Test inserting value that pushes all the way left."""
     small_tree.insert(33)
     assert small_tree.root.left.left.left.value == 33
+
+
+def test_insert_to_small_tree_updates_size(small_tree):
+    """Test that insert on small tree increments size."""
+    small_tree.insert(43)
+    assert small_tree.size == 7

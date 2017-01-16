@@ -28,15 +28,19 @@ class BinarySearchTree():
         self.size += 1
         if self.root is None:
             self.root = Node(value)
+            return
         current_node = self.root
         while True:
-            if value < current_node:
+            if value < current_node.value:
                 if current_node.left:
                     current_node = current_node.left
                 else:
                     current_node.left = Node(value)
-            if value > current_node:
+                    break
+            if value > current_node.value:
                 if current_node.right:
                     current_node = current_node.right
                 else:
                     current_node.right = Node(value)
+                    break
+
