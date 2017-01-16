@@ -66,9 +66,12 @@ class BinarySearchTree():
         """Return the size of the BST."""
         return self._size
 
-    def depth(self, start_node):
+    def depth(self, start_node=None):
         """Return the depth of the BST."""
-        current_node = start_node
+        if start_node is None:
+            current_node = self.root
+        else:
+            current_node = start_node
         left_depth = 0
         right_depth = 0
         if current_node.right:
