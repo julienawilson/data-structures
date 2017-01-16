@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
 """Test our implementation of Dijkstra's shortest path algorithim."""
 
 
