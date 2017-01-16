@@ -25,6 +25,7 @@ class BinarySearchTree():
 
     def insert(self, value):
         """Insert a value in to the binary search tree."""
+        self.size += 1
         if self.root is None:
             self.root = Node(value)
         current_node = self.root
