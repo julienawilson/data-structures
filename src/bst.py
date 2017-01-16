@@ -22,6 +22,7 @@ class BinarySearchTree():
         self.size = 0
         self.depth = 0
         self.root = None
+        self.depth = 0
 
     def insert(self, value):
         """Insert a value in to the binary search tree."""
@@ -67,4 +68,7 @@ class BinarySearchTree():
         """Return the size of the BST."""
         return self.size
 
-    
+
+    def depth(self):
+        """Return the depth of the BST."""
+        
