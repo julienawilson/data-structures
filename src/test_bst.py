@@ -2,6 +2,7 @@
 
 import pytest
 from bst import Node
+from bst import BinarySearchTree
 
 
 def test_node_creation():
@@ -35,3 +36,19 @@ def test_new_node_right_val():
     a_node = Node(45)
     other_node = Node(4, right=a_node)
     assert other_node.right == a_node
+
+
+def test_new_tree_has_no_root():
+    """Test new binary search tree is empty."""
+    b_tree = BinarySearchTree()
+    assert  b_tree.size == 0
+
+
+def test_insert_in_empty_tree_establishes_root():
+    """Test inserting to empty BST assigns value as root."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    assert b_tree.root == 17
+
+
+def test_insert_
