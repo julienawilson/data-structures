@@ -19,14 +19,14 @@ class BinarySearchTree():
 
     def __init__(self):
         """Initialize the BinarySearchTree Class."""
-        self.size = 0
+        self._size = 0
         self.depth = 0
         self.root = None
         self.depth = 0
 
     def insert(self, value):
         """Insert a value in to the binary search tree."""
-        self.size += 1
+        self._size += 1
         if self.root is None:
             self.root = Node(value)
             return
@@ -66,7 +66,7 @@ class BinarySearchTree():
 
     def size(self):
         """Return the size of the BST."""
-        return self.size
+        return self._size
 
 
     def depth(self):

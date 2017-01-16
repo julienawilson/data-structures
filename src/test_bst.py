@@ -52,7 +52,7 @@ def test_new_node_right_val():
 def test_new_tree_has_no_root():
     """Test new binary search tree is empty."""
     b_tree = BinarySearchTree()
-    assert b_tree.size == 0
+    assert b_tree._size == 0
 
 
 def test_insert_in_empty_tree_establishes_root():
@@ -66,7 +66,7 @@ def test_insert_in_empty_tree_updates_size():
     """Test that insert on empty tree increments size."""
     b_tree = BinarySearchTree()
     b_tree.insert(43)
-    assert b_tree.size == 1
+    assert b_tree._size == 1
 
 
 def test_inserting_lower_val_pushes_left():
@@ -99,7 +99,7 @@ def test_inserting_lower_item_into_populated_tree(small_tree):
 def test_insert_to_small_tree_updates_size(small_tree):
     """Test that insert on small tree increments size."""
     small_tree.insert(43)
-    assert small_tree.size == 7
+    assert small_tree._size == 7
 
 
 def test_search_on_root_value():
@@ -122,3 +122,13 @@ def test_search_for_something_deep_in_the_tree(small_tree):
 def test_search_for_a_node_value_on_left(small_tree):
     """Test searching for a node value at bottom of tree."""
     assert small_tree.search(35).value == 35
+
+def test_size_on_empty():
+    """Test sizze method on empty tree returns 0."""
+    b_tree = BinarySearchTree()
+    assert b_tree.size() == 0
+
+def test_size_on_populated_tree(small_tree):
+    assert small_tree.size() == 6
+
+
