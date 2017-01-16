@@ -16,6 +16,24 @@ def small_tree():
     tree.insert(90)
     return tree
 
+@pytest.fixture()
+def weird_tree():
+    """Grow a small tree with five nodes."""
+    tree = BinarySearchTree()
+    tree.insert(50)
+    tree.insert(79)
+    tree.insert(80)
+    tree.insert(83)
+    tree.insert(90)
+    tree.insert(100)
+    tree.insert(44)
+    tree.insert(48)
+    tree.insert(49)
+    tree.insert(103)
+    tree.insert(2)
+    tree.insert(102)
+    return tree
+
 def test_node_creation():
     """Test that instantiating new node creates instance."""
     a_node = Node(4)
@@ -84,6 +102,7 @@ def test_inserting_higher_val_pushes_right():
     b_tree.insert(20)
     assert b_tree.root.right.value == 20
 
+
 def test_inserting_less_but_more_into_populated_tree(small_tree):
     """Test inserting lower value that would push left then right."""
     small_tree.insert(43)
@@ -123,14 +142,23 @@ def test_search_for_a_node_value_on_left(small_tree):
     """Test searching for a node value at bottom of tree."""
     assert small_tree.search(35).value == 35
 
+
 def test_size_on_empty():
     """Test sizze method on empty tree returns 0."""
     b_tree = BinarySearchTree()
     assert b_tree.size() == 0
 
+
 def test_size_on_populated_tree(small_tree):
+    """Test the size on a populated tree."""
     assert small_tree.size() == 6
 
 
 def test_depth_on_small_tree(small_tree):
+    """Test the size on a small Tree."""
     assert small_tree.depth() == 2
+
+
+def test_depth_on_weird_tree(weird_tree):
+    """Test the depth on a weird tree."""
+    assert weird_tree.depth() == 7
