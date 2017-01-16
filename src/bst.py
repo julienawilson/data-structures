@@ -44,3 +44,22 @@ class BinarySearchTree():
                     current_node.right = Node(value)
                     break
 
+    def search(self, value):
+        """Search the Binary Search Tree for a value, return node or none."""
+        current_node = self.root
+        while True:
+            if value == current_node.value:
+                return current_node
+            if value < current_node.value:
+                if current_node.left:
+                    current_node = current_node.left
+                    continue
+                else:
+                    return None
+            if value > current_node.value:
+                if current_node.right:
+                    current_node = current_node.right
+                    continue
+                else:
+                    return None
+
