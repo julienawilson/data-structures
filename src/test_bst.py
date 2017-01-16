@@ -154,6 +154,37 @@ def test_size_on_populated_tree(small_tree):
     assert small_tree.size() == 6
 
 
+def test_contains_empty_tree():
+    """Test that .contains() returns false on empty tree."""
+    tree = BinarySearchTree()
+    assert tree.contains(4) is False
+
+
+def test_contains_true_small_tree(small_tree):
+    """Test that small tree contains a node."""
+    assert small_tree.contains(80) is True
+
+
+def test_contains_true_small_tree_root(small_tree):
+    """Test that small tree contains a node."""
+    assert small_tree.contains(50) is True
+
+
+def test_contains_false_small_tree(small_tree):
+    """Test that small tree contains a node."""
+    assert small_tree.contains(30) is False
+
+
+def test_contains_true_weird_tree(weird_tree):
+    """Test that small tree contains a node."""
+    assert weird_tree.contains(103) is True
+
+
+def test_contains_true_weird_tree_root(weird_tree):
+    """Test that small tree contains a node."""
+    assert weird_tree.contains(50) is True
+
+
 def test_depth_on_small_tree(small_tree):
     """Test the size on a small Tree."""
     assert small_tree.depth() == 2

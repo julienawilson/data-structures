@@ -83,10 +83,12 @@ class BinarySearchTree():
         depth = right_depth if right_depth > left_depth else left_depth
         return depth
 
-
     def contains(self, value):
         """Check if the Binary Search Tree has a given value."""
-        current_node = self.root
+        if self.root:
+            current_node = self.root
+        else:
+            return False
         while True:
             if value == current_node.value:
                 return True
