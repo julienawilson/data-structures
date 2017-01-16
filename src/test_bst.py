@@ -100,3 +100,25 @@ def test_insert_to_small_tree_updates_size(small_tree):
     """Test that insert on small tree increments size."""
     small_tree.insert(43)
     assert small_tree.size == 7
+
+
+def test_search_on_root_value():
+    """Test that searching for root value returns root."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(43)
+    assert b_tree.search(43).value == b_tree.root.value
+
+
+def test_search_for_nonexistent_value(small_tree):
+    """Test that search for value not in tree returns None."""
+    assert small_tree.search(101) is None
+
+
+def test_search_for_something_deep_in_the_tree(small_tree):
+    """Test searching for a node value at bottom of tree."""
+    assert small_tree.search(90).value == 90
+
+
+def test_search_for_a_node_value_on_left(small_tree):
+    """Test searching for a node value at bottom of tree."""
+    assert small_tree.search(35).value == 35
