@@ -132,3 +132,5 @@ def test_size_on_populated_tree(small_tree):
     assert small_tree.size() == 6
 
 
+def test_depth_on_small_tree(small_tree):
+    assert small_tree.depth(small_tree.root) ==  2
