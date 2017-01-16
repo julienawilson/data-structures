@@ -3,6 +3,14 @@ Patrick Saunders and Julien Wilson
 <br>
 Data Structures created in Python401
 
+##Simple Graph
+A directional unweighted graph that supports breadth and depth first traversals.
+
+##Binary heap:
+binheap.py provides a binary heap class with push() and pop() methods.
+both push() and pop() rely on a hidden _sort() method to keep the heap
+properly structured.
+
 ##Deque
 Double Ended Queue
 
