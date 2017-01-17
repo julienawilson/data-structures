@@ -24,9 +24,9 @@ class BinarySearchTree():
 
     def insert(self, value):
         """Insert a value in to the binary search tree."""
-        self._size += 1
         if self.root is None:
             self.root = Node(value)
+            self._size = 1
             return
         current_node = self.root
         while True:
@@ -35,13 +35,17 @@ class BinarySearchTree():
                     current_node = current_node.left
                 else:
                     current_node.left = Node(value)
+                    self._size += 1
                     break
-            if value > current_node.value:
+            elif value > current_node.value:
                 if current_node.right:
                     current_node = current_node.right
                 else:
                     current_node.right = Node(value)
+                    self._size += 1
                     break
+            else:
+                break
 
     def search(self, value):
         """Search the Binary Search Tree for a value, return node or none."""
@@ -115,5 +119,5 @@ class BinarySearchTree():
             depth_right = self.depth(self.root.right)
         else:
             depth_right = 0
-        balance = depth_left - depth_right
+        balance = depth_right - depth_left
         return balance

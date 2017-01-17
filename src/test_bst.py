@@ -121,6 +121,12 @@ def test_insert_to_small_tree_updates_size(small_tree):
     assert small_tree._size == 7
 
 
+def test_insert_to_small_tree_existing_num(small_tree):
+    """Test that inserting existing number on small tree doesn't change size."""
+    small_tree.insert(40)
+    assert small_tree.size == 6
+
+
 def test_search_on_root_value():
     """Test that searching for root value returns root."""
     b_tree = BinarySearchTree()
@@ -194,6 +200,7 @@ def test_depth_on_weird_tree(weird_tree):
     """Test the depth on a weird tree."""
     assert weird_tree.depth() == 7
 
+
 def test_balance_on_small_tree(small_tree):
     """Test balance of smal tree fixture."""
     assert small_tree.balance() == 0
@@ -201,6 +208,6 @@ def test_balance_on_small_tree(small_tree):
 
 def test_balance_on_weird_tree(weird_tree):
     """Test balance of smal tree fixture."""
-    assert weird_tree.balance() == -4
+    assert weird_tree.balance() == 4
 
     
