@@ -124,7 +124,7 @@ def test_insert_to_small_tree_updates_size(small_tree):
 def test_insert_to_small_tree_existing_num(small_tree):
     """Test that inserting existing number on small tree doesn't change size."""
     small_tree.insert(40)
-    assert small_tree.size == 6
+    assert small_tree.size() == 6
 
 
 def test_search_on_root_value():
@@ -210,4 +210,18 @@ def test_balance_on_weird_tree(weird_tree):
     """Test balance of smal tree fixture."""
     assert weird_tree.balance() == 4
 
-    
+
+def test_inorder_small_tree(small_tree):
+    """Test that inorder works on small tree."""
+    inorder_list = []
+    for x in small_tree.in_order():
+        inorder_list.append(x.value)
+    assert inorder_list == [35, 40, 50, 60, 80, 90]
+
+
+def test_inorder_weird_tree(weird_tree):
+    """Test that inorder works on weird tree."""
+    inorder_list = []
+    for x in weird_tree.in_order():
+        inorder_list.append(x.value)
+    assert inorder_list == [2, 44, 48, 49, 50, 79, 80, 83, 90, 100, 102, 103]

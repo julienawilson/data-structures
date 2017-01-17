@@ -142,7 +142,7 @@ class BinarySearchTree():
                 stack.append(current_node)
                 current_node = current_node.left
             else:
-                node = stack.pop()
+                current_node = stack.pop()
                 yield current_node
                 current_node = current_node.right
 
