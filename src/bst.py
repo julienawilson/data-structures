@@ -121,3 +121,20 @@ class BinarySearchTree():
             depth_right = 0
         balance = depth_right - depth_left
         return balance
+
+    def in_order(self):
+        """Return generator that returns tree values one at a time using in-order traversal."""
+        stack = []
+        current_node = self.root
+        while len(stack) or current_node is not None:
+            if current_node:
+                stack.append(current_node)
+                current_node = current_node.left
+            else:
+                node = stack.pop()
+                yield current_node
+                current_node = current_node.right
+
+
+
+
