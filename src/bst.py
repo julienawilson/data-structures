@@ -146,6 +146,21 @@ class BinarySearchTree():
                 yield current_node
                 current_node = current_node.right
 
-
+    
+    def pre_order(self):
+        """Return generator that returns tree values one at a time using pre-order traversal."""
+        stack = []
+        current_node = self.root
+        if current_node is None:
+            return
+        stack.append(current_node)
+        while len(stack):
+            current_node = stack.pop()
+            yield current_node
+            if current_node.right:
+                stack.append(current_node.right)
+            if current_node.left:
+                stack.append(current_node.left)
+            
 
 
