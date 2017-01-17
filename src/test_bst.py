@@ -193,3 +193,14 @@ def test_depth_on_small_tree(small_tree):
 def test_depth_on_weird_tree(weird_tree):
     """Test the depth on a weird tree."""
     assert weird_tree.depth() == 7
+
+def test_balance_on_small_tree(small_tree):
+    """Test balance of smal tree fixture."""
+    assert small_tree.balance() == 0
+
+
+def test_balance_on_weird_tree(weird_tree):
+    """Test balance of smal tree fixture."""
+    assert weird_tree.balance() == -4
+
+    
