@@ -12,6 +12,9 @@ balance(self): Return a positive or negative integer representing tree's balance
     an ideally-balanced tree should return 0.
 """
 
+from queue import Queue
+
+
 class Node():
     """Node object for the binary search tree."""
 
@@ -178,3 +181,11 @@ class BinarySearchTree():
                     yield peek_node
                     last_node_vis = stack.pop()
 
+    def breadth_first(self):
+        """Return a generator that yields tree values according to breadth first traversal."""
+        trav_list = Queue([self.root])
+        while trav_list.peek():
+            current_node = trav_list.dequeue()
+            trav_list.enqueue(current_node.left)
+            trav_list.enqueue(current_node.right)
+            yield current_node
