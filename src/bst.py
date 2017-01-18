@@ -178,18 +178,3 @@ class BinarySearchTree():
                     yield peek_node
                     last_node_vis = stack.pop()
 
-
-
-while (not s.isEmpty() or node ≠ null)
-    if (node ≠ null)
-      s.push(node)
-      node ← node.left
-    else
-      peekNode ← s.peek()
-      // if right child exists and traversing node
-      // from left child, then move right
-      if (peekNode.right ≠ null and lastNodeVisited ≠ peekNode.right)
-        node ← peekNode.right
-      else
-        visit(peekNode)
-        lastNodeVisited ← s.pop()
