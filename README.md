@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=master)](https://travis-ci.org/julienawilson/data-structures)
+
 # data-structures
 Patrick Saunders and Julien Wilson
 <br>
