@@ -341,7 +341,7 @@ def test_bfs_on_single_node_bst():
 def test_bfs_small_tree(small_tree):
     """Test breadth-first-search traversal returns expected path."""
     bfs_list = []
-    for node in small_tree.post_order():
+    for node in small_tree.breadth_first():
         bfs_list.append(node.value)
     assert bfs_list == [50, 40, 80, 35, 60, 90]
 
@@ -349,6 +349,6 @@ def test_bfs_small_tree(small_tree):
 def test_bfs_weird_tree(weird_tree):
     """Test that breadth-first-search traversal returns expected path."""
     bfs_list = []
-    for node in weird_tree.post_order():
+    for node in weird_tree.breadth_first():
         bfs_list.append(node.value)
     assert bfs_list == [50, 44, 79, 2, 48, 80, 49, 83, 90, 100, 103, 102]
