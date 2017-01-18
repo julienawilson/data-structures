@@ -225,3 +225,20 @@ def test_inorder_weird_tree(weird_tree):
     for x in weird_tree.in_order():
         inorder_list.append(x.value)
     assert inorder_list == [2, 44, 48, 49, 50, 79, 80, 83, 90, 100, 102, 103]
+
+
+def test_preorder_small_tree(small_tree):
+    """Test that preorder works on small tree."""
+    preorder_list = []
+    for x in small_tree.pre_order():
+        preorder_list.append(x.value)
+    assert preorder_list == [50, 40, 35, 80, 60, 90]
+
+
+def test_preorder_weird_tree(weird_tree):
+    """Test that preorder works on weird tree."""
+    preorder_list = []
+    for x in weird_tree.pre_order():
+        preorder_list.append(x.value)
+    assert preorder_list == [50, 44, 2, 48, 49, 79, 80, 83, 90, 100, 103, 102]
+
