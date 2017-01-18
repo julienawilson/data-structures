@@ -226,7 +226,7 @@ class BinarySearchTree():
                 target_node.parent = None
                 target_node.left = None
             if target_node.right:
-                if target_node < target_node.parent:
+                if target_node.value < target_node.parent.value:
                     target_node.right.parent = target_node.parent
                     target_node.parent.left = target_node.right
                 else:
