@@ -23,11 +23,12 @@ from queue import Queue
 class Node():
     """Node object for the binary search tree."""
 
-    def __init__(self, value, left=None, right=None):
+    def __init__(self, value, left=None, right=None, parent=None):
         """Instantiate a node object."""
         self.value = value
         self.left = left
         self.right = right
+        self.parent = parent
 
 
 class BinarySearchTree():
@@ -54,6 +55,7 @@ class BinarySearchTree():
                     current_node = current_node.left
                 else:
                     current_node.left = Node(value)
+                    current_node.left.parent = current_node
                     self._size += 1
                     break
             elif value > current_node.value:
@@ -61,6 +63,7 @@ class BinarySearchTree():
                     current_node = current_node.right
                 else:
                     current_node.right = Node(value)
+                    current_node.right.parent = current_node
                     self._size += 1
                     break
             else:
@@ -186,6 +189,7 @@ class BinarySearchTree():
                     yield peek_node
                     last_node_vis = stack.pop()
 
+
     def breadth_first(self):
         """Return a generator that yields tree values according to breadth first traversal."""
         trav_list = Queue([self.root])
@@ -196,3 +200,14 @@ class BinarySearchTree():
             if current_node.right:
                 trav_list.enqueue(current_node.right)
             yield current_node
+
+    def delete(self, value):
+        """Get rid of a node. Or at least its connection."""
+        target_node = self.search(value)
+        if not (target_node.left or target_node.right):
+            if target_node.value > target_node.parent.value:
+                target_node.parent.right = None
+                target_node.parent = None
+            else:
+                target_node.parent.left = None
+                target_node.parent = None
