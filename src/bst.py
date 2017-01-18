@@ -189,7 +189,6 @@ class BinarySearchTree():
                     yield peek_node
                     last_node_vis = stack.pop()
 
-
     def breadth_first(self):
         """Return a generator that yields tree values according to breadth first traversal."""
         trav_list = Queue([self.root])
@@ -220,19 +219,37 @@ class BinarySearchTree():
                 if target_node < target_node.parent:
                     target_node.left.parent = target_node.parent
                     target_node.parent.left = target_node.left
-                    target_node.parent = None
-                    target_node.left = None
-                    self._size -= 1
+                else:
+                    target_node.left.parent = target_node.parent
+                    target_node.parent.right = target_node.left
+                self._size -= 1
+                target_node.parent = None
+                target_node.left = None
             if target_node.right:
                 if target_node < target_node.parent:
                     target_node.right.parent = target_node.parent
+                    target_node.parent.left = target_node.right
+                else:
+                    target_node.right.parent = target_node.parent
                     target_node.parent.right = target_node.right
-                    target_node.parent = None
-                    target_node.right = None
-                    self._size -= 1
-
-
-
-
-                target_node.left.parent = target_node.parent.left
-
+                self._size -= 1
+                target_node.parent = None
+                target_node.right = None
+        else:
+            del_node = self.search(value)
+            current_node = del_node.right
+            while current_node.left:
+                current_node = current_node.left
+            replace_node = current_node
+            self.delete(current_node)
+            if del_node.parent:
+                replace_node.parent = del_node.parent
+                if replace_node.value < del_node.value:
+                    del_node.parent.left = replace_node
+                else:
+                    del_node.parent.right = replace_node
+            replace_node.left = del_node.left
+            replace_node.right = del_node.right
+            del_node.parent = None
+            del_node.left = None
+            del_node.right = None
