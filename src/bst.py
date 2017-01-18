@@ -204,10 +204,35 @@ class BinarySearchTree():
     def delete(self, value):
         """Get rid of a node. Or at least its connection."""
         target_node = self.search(value)
+        if not target_node:
+            return None
         if not (target_node.left or target_node.right):
             if target_node.value > target_node.parent.value:
                 target_node.parent.right = None
                 target_node.parent = None
+                self._size -= 1
             else:
                 target_node.parent.left = None
                 target_node.parent = None
+                self._size -= 1
+        elif not (target_node.left and target_node.right):
+            if target_node.left:
+                if target_node < target_node.parent:
+                    target_node.left.parent = target_node.parent
+                    target_node.parent.left = target_node.left
+                    target_node.parent = None
+                    target_node.left = None
+                    self._size -= 1
+            if target_node.right:
+                if target_node < target_node.parent:
+                    target_node.right.parent = target_node.parent
+                    target_node.parent.right = target_node.right
+                    target_node.parent = None
+                    target_node.right = None
+                    self._size -= 1
+
+
+
+
+                target_node.left.parent = target_node.parent.left
+
