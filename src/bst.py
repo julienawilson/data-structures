@@ -186,6 +186,8 @@ class BinarySearchTree():
         trav_list = Queue([self.root])
         while trav_list.peek():
             current_node = trav_list.dequeue()
-            trav_list.enqueue(current_node.left)
-            trav_list.enqueue(current_node.right)
+            if current_node.left:
+                trav_list.enqueue(current_node.left)
+            if current_node.right:
+                trav_list.enqueue(current_node.right)
             yield current_node
