@@ -352,3 +352,24 @@ def test_bfs_weird_tree(weird_tree):
     for node in weird_tree.breadth_first():
         bfs_list.append(node.value)
     assert bfs_list == [50, 44, 79, 2, 48, 80, 49, 83, 90, 100, 103, 102]
+
+
+def test_delete_node_with_no_children(small_tree):
+    """Test calling delete on node with no children."""
+    small_tree.delete(35)
+    assert small_tree.search(35) == None
+
+
+def test_delete_node_with_no_children_annuls_parent_connection(small_tree):
+    """Test calling delete on node with no children kills parent's connection."""
+    small_tree.delete(35)
+    assert small_tree.search(40).left is None
+
+
+def test_delete_node_with_one_child_reassigns_connection(small_tree):
+    """Test deleting a node reassigns its one child to expected new parent."""
+    small_tree.delete(40)
+    assert small_tree.search(35).parent.value == 50
+    assert small_tree.search(50).left.value == 35
+
+# def test_delete_node_w_
