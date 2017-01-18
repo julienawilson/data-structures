@@ -4,6 +4,7 @@ import pytest
 from bst import Node
 from bst import BinarySearchTree
 
+
 @pytest.fixture()
 def small_tree():
     """Grow a small tree with five nodes."""
@@ -15,6 +16,7 @@ def small_tree():
     tree.insert(60)
     tree.insert(90)
     return tree
+
 
 @pytest.fixture()
 def weird_tree():
@@ -33,6 +35,7 @@ def weird_tree():
     tree.insert(2)
     tree.insert(102)
     return tree
+
 
 def test_node_creation():
     """Test that instantiating new node creates instance."""
@@ -122,7 +125,7 @@ def test_insert_to_small_tree_updates_size(small_tree):
 
 
 def test_insert_to_small_tree_existing_num(small_tree):
-    """Test that inserting existing number on small tree doesn't change size."""
+    """Test that inserting existing number doesn't change size."""
     small_tree.insert(40)
     assert small_tree.size() == 6
 
@@ -211,36 +214,93 @@ def test_balance_on_weird_tree(weird_tree):
     assert weird_tree.balance() == 4
 
 
+def test_inorder_no_nodes():
+    """Test in-order traversal on empty tree returns empty path."""
+    b_tree = BinarySearchTree()
+    inorder_list = []
+    for node in b_tree.in_order():
+        inorder_list.append(node.value)
+    assert inorder_list == []
+
+
+def test_inorder_single_node_treee():
+    """Test in-order traversal on single-node tree returns that one node."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    inorder_list = []
+    for node in b_tree.in_order():
+        inorder_list.append(node.value)
+    assert inorder_list == [17]
+
+
 def test_inorder_small_tree(small_tree):
     """Test that inorder works on small tree."""
     inorder_list = []
-    for x in small_tree.in_order():
-        inorder_list.append(x.value)
+    for node in small_tree.in_order():
+        inorder_list.append(node.value)
     assert inorder_list == [35, 40, 50, 60, 80, 90]
 
 
 def test_inorder_weird_tree(weird_tree):
     """Test that inorder works on weird tree."""
     inorder_list = []
-    for x in weird_tree.in_order():
-        inorder_list.append(x.value)
+    for node in weird_tree.in_order():
+        inorder_list.append(node.value)
     assert inorder_list == [2, 44, 48, 49, 50, 79, 80, 83, 90, 100, 102, 103]
+
+
+def test_preorder_no_nodes():
+    """Test pre-order traversal on empty tree returns empty path."""
+    b_tree = BinarySearchTree()
+    preorder_list = []
+    for node in b_tree.in_order():
+        preorder_list.append(node.value)
+    assert preorder_list == []
+
+
+def test_preorder_single_node_tree():
+    """Test pre-order traversal on single-node tree returns that one node."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    preorder_list = []
+    for node in b_tree.in_order():
+        preorder_list.append(node.value)
+    assert preorder_list == [17]
 
 
 def test_preorder_small_tree(small_tree):
     """Test that preorder works on small tree."""
     preorder_list = []
-    for x in small_tree.pre_order():
-        preorder_list.append(x.value)
+    for node in small_tree.pre_order():
+        preorder_list.append(node.value)
     assert preorder_list == [50, 40, 35, 80, 60, 90]
 
 
 def test_preorder_weird_tree(weird_tree):
     """Test that preorder works on weird tree."""
     preorder_list = []
-    for x in weird_tree.pre_order():
-        preorder_list.append(x.value)
+    for node in weird_tree.pre_order():
+        preorder_list.append(node.value)
     assert preorder_list == [50, 44, 2, 48, 49, 79, 80, 83, 90, 100, 103, 102]
+
+
+def test_postorder_no_nodes():
+    """Test post-order traversal on empty tree returns empty path."""
+    b_tree = BinarySearchTree()
+    postorder_list = []
+    for node in b_tree.in_order():
+        postorder_list.append(node.value)
+    assert postorder_list == []
+
+
+def test_postorder_single_node_tree():
+    """Test post-order traversal on single-node tree returns that one node."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    postorder_list = []
+    for node in b_tree.in_order():
+        postorder_list.append(node.value)
+    assert postorder_list == [17]
 
 
 def test_postorder_small_tree(small_tree):
@@ -250,10 +310,45 @@ def test_postorder_small_tree(small_tree):
         postorder_list.append(node.value)
     assert postorder_list == [35, 40, 60, 90, 80, 50]
 
-def test_postorder_weird_tree(small_tree):
+
+def test_postorder_weird_tree(weird_tree):
     """Test that post-order traversal of weird tree returns expected path."""
     postorder_list = []
-    for node in small_tree.post_order():
+    for node in weird_tree.post_order():
         postorder_list.append(node.value)
-    assert postorder_list == [32, 49, 48, 44, 102, 103, 100, 90, 83, 80, 79, 50]
+    assert postorder_list == [2, 49, 48, 44, 102, 103, 100, 90, 83, 80, 79, 50]
 
+
+def test_bfs_on_bst_no_nodes():
+    """Test breadth-first-search traversal on empty tree returns empty path."""
+    b_tree = BinarySearchTree()
+    bfs_list = []
+    for node in b_tree.breadth_first():
+        bfs_list.append(node.value)
+    assert bfs_list == []
+
+
+def test_bfs_on_single_node_bst():
+    """Test breadth-first-search traversal on one-node tree returns node."""
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    bfs_list = []
+    for node in b_tree.breadth_first():
+        bfs_list.append(node.value)
+    assert bfs_list == [17]
+
+
+def test_bfs_small_tree(small_tree):
+    """Test breadth-first-search traversal returns expected path."""
+    bfs_list = []
+    for node in small_tree.post_order():
+        bfs_list.append(node.value)
+    assert bfs_list == [50, 40, 80, 35, 60, 90]
+
+
+def test_bfs_weird_tree(weird_tree):
+    """Test that breadth-first-search traversal returns expected path."""
+    bfs_list = []
+    for node in weird_tree.post_order():
+        bfs_list.append(node.value)
+    assert bfs_list == [50, 44, 79, 2, 48, 80, 49, 83, 90, 100, 103, 102]
