@@ -40,14 +40,14 @@ class SimpleGraph(object):
         """Add a new node ‘n’ to the graph."""
         self.node_dict[n] = []
 
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, weight=1):
         """Add a new edge to the graph connecting ‘n1’ and ‘n2’, add 'n1' and 'n2' if necessary."""
         if n1 not in self.node_dict:
             self.add_node(n1)
         if n2 not in self.node_dict:
             self.add_node(n2)
-        self.node_dict[n1].append(n2)
-        self.edges_list.append((n1, n2))
+        self.node_dict[n1].append((n2, weight))
+        self.edges_list.append((n1, n2, weight))
 
     def del_node(self, n):
         """Delete the node ‘n’ from the graph, raises an error if no
@@ -55,8 +55,9 @@ class SimpleGraph(object):
         if n in self.node_dict.keys():
             del self.node_dict[n]
         for key in self.node_dict:
-            if n in self.node_dict[key]:
-                self.node_dict[key].remove(n)
+            for edge in self.node_dict[key]:
+                if edge[0] == n:
+                    self.node_dict[key].remove(edge)
         for edge in self.edges_list:
             if edge[0] == n or edge[1] == n:
                 self.edges_list.remove(edge)
@@ -64,12 +65,16 @@ class SimpleGraph(object):
     def del_edge(self, n1, n2):
         """Delete the edge connecting ‘n1’ and ‘n2’ from the
         graph, raises an error if no such edge exists"""
-        if (n1, n2) not in self.edges_list:
+        for edge in self.edges_list:
+            if edge[0] == n1 and edge[1] == n2:
+                self.edges_list.remove(edge)
+                break
+        else:
             raise ValueError('This edge does not exist.')
-        self.edges_list.remove((n1, n2))
         if n1 in self.node_dict.keys():
-            if n2 in self.node_dict[n1]:
-                self.node_dict[n1].remove(n2)
+            for edge in self.node_dict[n1]:
+                if edge[0] == n2:
+                    self.node_dict[n1].remove(edge)
 
     def has_node(self, n):
         """True if node ‘n’ is contained in the graph, False if not."""
@@ -80,7 +85,7 @@ class SimpleGraph(object):
         raises an error if n is not in g."""
         if n not in self.node_dict.keys():
             raise ValueError('You have chosen a node which does not exist')
-        return self.node_dict[n]
+        return [edge[0] for edge in self.node_dict[n]]
 
     def adjacent(self, n1, n2):
         """Return True if there is an edge connecting n1 and n2,
@@ -88,7 +93,7 @@ class SimpleGraph(object):
         in g."""
         if n1 not in self.node_dict.keys() or n2 not in self.node_dict.keys():
             raise ValueError('You have chosen a node which does not exist')
-        return n2 in self.node_dict[n1]
+        return n2 in [edge[0] for edge in self.node_dict[n1]]
 
     def depth_first_traversal(self, start):
         """Perform a depth first traversal from start."""
@@ -99,7 +104,7 @@ class SimpleGraph(object):
                 head = trav_list.pop()
                 if head not in path:
                     path.append(head)
-                    trav_list.extend(self.node_dict[head][::-1])
+                    trav_list.extend([edge[0] for edge in self.node_dict[head]][::-1])
             return path
         except KeyError:
             raise KeyError('That node does not exist')
@@ -113,7 +118,7 @@ class SimpleGraph(object):
                 head = trav_list.dequeue()  # check this method name
                 if head not in path:
                     path.append(head)
-                    for item in self.node_dict[head]:
+                    for item in [edge[0] for edge in self.node_dict[head]]:
                         trav_list.enqueue(item)
             return path
         except IndexError:
