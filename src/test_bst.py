@@ -242,3 +242,18 @@ def test_preorder_weird_tree(weird_tree):
         preorder_list.append(x.value)
     assert preorder_list == [50, 44, 2, 48, 49, 79, 80, 83, 90, 100, 103, 102]
 
+
+def test_postorder_small_tree(small_tree):
+    """Test that post-order traversal of small tree returns expected path."""
+    postorder_list = []
+    for node in small_tree.post_order():
+        postorder_list.append(node.value)
+    assert postorder_list == [35, 40, 60, 90, 80, 50]
+
+def test_postorder_weird_tree(small_tree):
+    """Test that post-order traversal of weird tree returns expected path."""
+    postorder_list = []
+    for node in small_tree.post_order():
+        postorder_list.append(node.value)
+    assert postorder_list == [32, 49, 48, 44, 102, 103, 100, 90, 83, 80, 79, 50]
+
