@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=master)](https://travis-ci.org/julienawilson/data-structures)
 
-# data-structures
+# Data Structures
 Patrick Saunders and Julien Wilson
 <br>
 Data Structures created in Python401
