@@ -5,28 +5,29 @@ class DoublyLinkedList(object):
     """Class representation of doubly linked list."""
 
     def __init__(self, iterable=None):
-        """Instantiate linked list."""
+        """Instantiate doubly linked list."""
         self.head_node = None
         self.tail_node = None
         self.length = 0
-        try:
-            for item in iterable:
-                self.push(item)
-        except TypeError:
-            if iterable:
-                print("Please only enter iterable values")
+        if iterable:
+            try:
+                for item in iterable:
+                    self.push(item)
+            except TypeError:
+                raise TypeError("Please only enter iterable values")
 
     def push(self, contents):
-        """Add node to this dll."""
+        """Add node to the head of this dll."""
         if self.length == 0:
             self.head_node = Node(contents, None, None)
             self.tail_node = self.head_node
         else:
             self.head_node = Node(contents, self.head_node, None)
+            self.head_node.next_node.previous_node = self.head_node
         self.length += 1
 
     def append(self, contents):
-        """Add node to this dll."""
+        """Add node to the tail of this dll."""
         if self.length == 0:
             self.tail_node = Node(contents, None, None)
             self.head_node = self.tail_node
@@ -37,20 +38,30 @@ class DoublyLinkedList(object):
     def pop(self):
         """Remove and return the current head node."""
         if not self.head_node:
-            return None
-        old_head_node = self.head_node
-        self.head_node = self.head_node.next_node
+            raise IndexError("Doubly Linked list is already empty")
+        old_head_node_value = self.head_node.contents
+        if self.length > 1:
+            self.head_node = self.head_node.next_node
+            self.head_node.previous_node = None
+        else:
+            self.head_node = None
+            self.tail_node = None
         self.length -= 1
-        return old_head_node.contents
+        return old_head_node_value
 
     def shift(self):
-        """Remove the end of the dll."""
+        """Remove and return the end of the dll."""
         if not self.tail_node:
-            return None
-        old_tail_node = self.tail_node
-        self.tail_node = self.tail_node.previous_node
+            raise IndexError("Doubly Linked list is already empty")
+        old_tail_node_value = self.tail_node.contents
+        if self.length > 1:
+            self.tail_node = self.tail_node.previous_node
+            self.tail_node.next_node = None
+        else:
+            self.tail_node = None
+            self.head_node = None
         self.length -= 1
-        return old_tail_node.contents
+        return old_tail_node_value
 
     def remove(self, contents):
         """Remove the first node with input contents if it exists."""

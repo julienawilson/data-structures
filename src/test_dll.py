@@ -64,9 +64,9 @@ def test_dll_pop():
     """Test for dll pop."""
     from dll import DoublyLinkedList
     one_dll, empty_dll, new_dll = sample_dll()
-    assert new_dll.pop().contents == 5
+    assert new_dll.pop() == 5
     assert new_dll.length == 4
-    assert one_dll.pop().contents == 1
+    assert one_dll.pop() == 1
     assert one_dll.length == 0
 
 
@@ -74,9 +74,10 @@ def test_dll_shift():
     """Test for dll shift."""
     from dll import DoublyLinkedList
     one_dll, empty_dll, new_dll = sample_dll()
-    assert new_dll.shift().contents == 1
-    assert empty_dll.shift() is None
-    assert one_dll.shift().contents == 1
+    assert new_dll.shift() == 1
+    with pytest.raises(IndexError):
+        assert empty_dll.shift()
+    assert one_dll.shift() == 1
     assert one_dll.length == 0
 
 
