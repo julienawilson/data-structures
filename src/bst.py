@@ -146,7 +146,6 @@ class BinarySearchTree():
                 yield current_node
                 current_node = current_node.right
 
-    
     def pre_order(self):
         """Return generator that returns tree values one at a time using pre-order traversal."""
         stack = []
@@ -161,6 +160,36 @@ class BinarySearchTree():
                 stack.append(current_node.right)
             if current_node.left:
                 stack.append(current_node.left)
-            
+
+    def post_order(self):
+        """Return a generator that yields tree values according to the post order."""
+        current_node = self.root
+        stack = []
+        last_node_vis = None
+        while len(stack) or current_node:
+            if current_node:
+                stack.append(current_node)
+                current_node = current_node.left
+            else:
+                peek_node = stack[-1]
+                if peek_node.right and last_node_vis != peek_node.right:
+                    current_node = peek_node.right
+                else:
+                    yield peek_node
+                    last_node_vis = stack.pop()
 
 
+
+while (not s.isEmpty() or node ≠ null)
+    if (node ≠ null)
+      s.push(node)
+      node ← node.left
+    else
+      peekNode ← s.peek()
+      // if right child exists and traversing node
+      // from left child, then move right
+      if (peekNode.right ≠ null and lastNodeVisited ≠ peekNode.right)
+        node ← peekNode.right
+      else
+        visit(peekNode)
+        lastNodeVisited ← s.pop()
