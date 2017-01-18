@@ -10,6 +10,11 @@ balance(self): Return a positive or negative integer representing tree's balance
     Trees that are higher on the left than the right should return a positive value;
     trees that are higher on the right than the left should return a negative value;
     an ideally-balanced tree should return 0.
+in_order(self): Return a generator that returns each node value from in-order traversal.
+pre_order(self): Return a generator that returns each node value from pre-order traversal.
+post_order(self): Return a generator that returns each node value from post_order traversal.
+breadth_first(self): Return a generator returns each node value from breadth-first traversal.
+
 """
 
 from queue import Queue
