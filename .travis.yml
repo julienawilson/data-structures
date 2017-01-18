@@ -6,4 +6,4 @@ python:
 install:
  - pip install -e .[test]
  
-script: py.test
+script: py.test src/test_bst.py
