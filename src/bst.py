@@ -241,7 +241,7 @@ class BinarySearchTree():
             while current_node.left:
                 current_node = current_node.left
             replace_node = current_node
-            self.delete(current_node)
+            self.delete(current_node.value)
             if del_node.parent:
                 replace_node.parent = del_node.parent
                 if replace_node.value < del_node.value:
