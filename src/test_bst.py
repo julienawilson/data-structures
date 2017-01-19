@@ -222,7 +222,6 @@ def test_balance_w_no_left_nodes():
     b_tree = BinarySearchTree()
     b_tree.insert(17)
     b_tree.insert(43)
-    import pdb; pdb.set_trace()
     assert b_tree.balance() == 1
 
 
