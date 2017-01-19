@@ -131,8 +131,10 @@ class BinarySearchTree():
                 else:
                     return False
 
-    def balance(self, node=self.root):
+    def balance(self):
         """Return numerical representation of how balanced the tree (or branches) is."""
+        if node is None:
+            node = self.root
         if node.left:
             depth_left = self.depth(node.left) + 1
         else:
@@ -143,6 +145,42 @@ class BinarySearchTree():
             depth_right = 0
         balance = depth_right - depth_left
         return balance
+
+
+    def autobalance(self, node=self.root):
+        """Make sure tree rebalances itself."""
+        nodes = post_order()
+        this_node = next(nodes)
+        if abs(balance(this_node)) > 1:
+
+
+    def rebalance(self, node):
+        if balance(node) <  -1 and balance(node.left) < 0:
+            
+
+
+    def rotate_right(self, node, holder_node=None):
+        """Helper function to shift nodes clockwise."""
+        if node.left.right:
+            holder_node = node.left.right
+        node.left.right = node
+        node.parent = node.left
+        node.left.parent = None
+        node.left = holder_node
+        node.left.parent = node
+
+
+    def rotate_left(self, node, holder_node=None):
+        """Helper function to shift nodes counterclockwise."""
+        if node.left.right:
+            holder_node = node.right.left
+        node.right.left = node
+        node.parent = node.right
+        node.right.parent = None
+        node.right = holder_node
+        node.right.parent = node
+
+
 
     def in_order(self):
         """Return generator that returns tree values one at a time using in-order traversal."""
