@@ -419,3 +419,77 @@ def test_delete_node_with_two_childs_updates_size(small_tree):
     """Test that delete node with two childs updates size."""
     small_tree.delete(80)
     assert small_tree.size() == 5
+
+
+def test_rotate_left_small_tree_assign_child(small_tree):
+    """Test that left rotation  on small tree reassigns children."""
+    small_tree.rotate_left(small_tree.root)
+    assert small_tree.search(80).left.value == 50
+
+
+def test_rotate_left_small_tree_assign_parent(small_tree):
+    """Test that left rotation  on small tree reassigns parent."""
+    small_tree.rotate_left(small_tree.root)
+    assert small_tree.search(50).parent.value == 80
+
+
+def test_rotate_left_reassigns_root(small_tree):
+    """Test the left rotation reassigns root."""
+    small_tree.rotate_left(small_tree.root)
+    assert small_tree.root.value == 80
+
+
+def test_rotate_left_doesnt_reassign_root(small_tree):
+    """Test the left rotation does not reassign root."""
+    small_tree.rotate_left(small_tree.search(80))
+    assert small_tree.root.value == 50
+
+
+def test_rotate_left_small_tree_assign_parent_not_root(small_tree):
+    """Test that left rotation  on small tree reassigns children."""
+    small_tree.rotate_left(small_tree.search(80))
+    assert small_tree.search(80).parent.value == 90
+
+
+def test_rotate_left_small_tree_assign_child_not_root(small_tree):
+    """Test that left rotation  on small tree reassigns children."""
+    small_tree.rotate_left(small_tree.search(80))
+    assert small_tree.search(80).right is None
+
+
+def test_rotate_right_small_tree_assign_child(small_tree):
+    """Test that right rotation  on small tree reassigns children."""
+    small_tree.rotate_right(small_tree.root)
+    assert small_tree.search(40).right.value == 50
+
+
+def test_rotate_right_small_tree_assign_parent(small_tree):
+    """Test that right rotation  on small tree reassigns parent."""
+    small_tree.rotate_right(small_tree.root)
+    assert small_tree.search(50).parent.value == 40
+
+
+def test_rotate_right_small_tree_assign_parent_not_root(small_tree):
+    """Test that right rotation  on small tree reassigns children."""
+    small_tree.rotate_right(small_tree.search(40))
+    assert small_tree.search(40).parent.value == 35
+
+
+def test_rotate_right_small_tree_assign_child_not_root(small_tree):
+    """Test that right rotation  on small tree reassigns children."""
+    small_tree.rotate_right(small_tree.search(40))
+    assert small_tree.search(40).left is None
+
+
+def test_rotate_right_small_tree_assign_parent_child_not_root(small_tree):
+    """Test that right rotation  on small tree reassigns children."""
+    small_tree.rotate_right(small_tree.search(40))
+    import pdb; pdb.set_trace()  # deleting 35 but no rotating anything 
+    assert small_tree.search(50).left.value == 35
+
+
+def test_rotate_right_small_tree_assign_right_child_not_root(small_tree):
+    """Test that right rotation  on small tree reassigns children."""
+    small_tree.rotate_right(small_tree.search(40))
+    import pdb; pdb.set_trace()  #  deleting 35 but no rotating anything 
+    assert small_tree.search(35).right is None

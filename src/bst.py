@@ -131,7 +131,7 @@ class BinarySearchTree():
                 else:
                     return False
 
-    def balance(self):
+    def balance(self, node=None):
         """Return numerical representation of how balanced the tree (or branches) is."""
         if node is None:
             node = self.root
@@ -146,20 +146,22 @@ class BinarySearchTree():
         balance = depth_right - depth_left
         return balance
 
-
-    def autobalance(self, node=self.root):
+    def autobalance(self, node=None):
         """Make sure tree rebalances itself."""
-        nodes = post_order()
+        if node is None:
+            node = self.root
+        nodes = self.post_order()
         this_node = next(nodes)
-        if abs(balance(this_node)) > 1:
-
+        if abs(self.balance(this_node)) > 1:
+            pass
 
     def rebalance(self, node):
-        if balance(node) <  -1 and balance(node.left) < 0:
-            
+        """Balance the given node."""
+        if self.balance(node) < -1 and self.balance(node.left) < 0:
+            pass
 
-
-    def rotate_right(self, node, holder_node=None):
+    #  deleting 35 but no rotating anything 
+    def rotate_right(self, node, holder_node=None): 
         """Helper function to shift nodes clockwise."""
         if node.left.right:
             holder_node = node.left.right
@@ -167,8 +169,10 @@ class BinarySearchTree():
         node.parent = node.left
         node.left.parent = None
         node.left = holder_node
-        node.left.parent = node
-
+        if holder_node:
+            node.left.parent = node
+        if node == self.root:
+            self.root = node.parent
 
     def rotate_left(self, node, holder_node=None):
         """Helper function to shift nodes counterclockwise."""
@@ -178,9 +182,10 @@ class BinarySearchTree():
         node.parent = node.right
         node.right.parent = None
         node.right = holder_node
-        node.right.parent = node
-
-
+        if holder_node:
+            node.right.parent = node
+        if node == self.root:
+            self.root = node.parent
 
     def in_order(self):
         """Return generator that returns tree values one at a time using in-order traversal."""
