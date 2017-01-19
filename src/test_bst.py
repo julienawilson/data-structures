@@ -372,6 +372,12 @@ def test_delete_node_with_no_children(small_tree):
     assert small_tree.search(35) == None
 
 
+def test_delete_node_with_no_children_update_size(small_tree):
+    """Test calling delete on node with no children."""
+    small_tree.delete(35)
+    assert small_tree.size() == 5
+
+
 def test_delete_node_with_no_children_annuls_parent_connection(small_tree):
     """Test calling delete on node with no children kills parent's connection."""
     small_tree.delete(35)
@@ -394,6 +400,7 @@ def test_delete_node_with_one_child_reassigns_connections(small_tree):
     assert small_tree.search(50).left.value == 35
 
 
+
 def test_delete_node_annuls_own_connections(small_tree):
     """Test calling delete on node kills parent and child connections."""
     small_tree.delete(40)
@@ -407,3 +414,9 @@ def test_delete_updates_size(small_tree):
     """Test that deleting a node updates tree's size."""
     small_tree.delete(40)
     assert small_tree.size() ==  5
+
+
+def test_delete_node_with_two_childs_updates_size(small_tree):
+    """Test that delete node with two childs updates size."""
+    small_tree.delete(80)
+    assert small_tree.size() == 5
