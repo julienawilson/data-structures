@@ -194,6 +194,11 @@ def test_contains_true_weird_tree_root(weird_tree):
     assert weird_tree.contains(50) is True
 
 
+def test_contains_with_nonexistent_val_gt_root(small_tree):
+    """Test contains returns False when value is greater than root but node nonexistent."""
+    assert small_tree.contains(99) is False
+
+
 def test_depth_on_small_tree(small_tree):
     """Test the size on a small Tree."""
     assert small_tree.depth() == 2
@@ -212,6 +217,13 @@ def test_balance_on_small_tree(small_tree):
 def test_balance_on_weird_tree(weird_tree):
     """Test balance of smal tree fixture."""
     assert weird_tree.balance() == 4
+
+def test_balance_w_no_left_nodes():
+    b_tree = BinarySearchTree()
+    b_tree.insert(17)
+    b_tree.insert(43)
+    import pdb; pdb.set_trace()
+    assert b_tree.balance() == 1
 
 
 def test_inorder_no_nodes():
@@ -364,12 +376,34 @@ def test_delete_node_with_no_children_annuls_parent_connection(small_tree):
     """Test calling delete on node with no children kills parent's connection."""
     small_tree.delete(35)
     assert small_tree.search(40).left is None
+    with pytest.raises(AttributeError):
+        assert small_tree.search(35).parent
 
 
-def test_delete_node_with_one_child_reassigns_connection(small_tree):
+def test_delete_node_with_no_children_annuls_own_connection(small_tree):
+    """Test calling delete on node with no children kills parent's connection."""
+    small_tree.delete(35)
+    with pytest.raises(AttributeError):
+        assert small_tree.search(35).parent
+
+
+def test_delete_node_with_one_child_reassigns_connections(small_tree):
     """Test deleting a node reassigns its one child to expected new parent."""
     small_tree.delete(40)
     assert small_tree.search(35).parent.value == 50
     assert small_tree.search(50).left.value == 35
 
-# def test_delete_node_w_
+
+def test_delete_node_annuls_own_connections(small_tree):
+    """Test calling delete on node kills parent and child connections."""
+    small_tree.delete(40)
+    with pytest.raises(AttributeError):
+        assert small_tree.search(40).parent is None
+    with pytest.raises(AttributeError):
+        assert small_tree.search(40).left is None
+
+
+def test_delete_updates_size(small_tree):
+    """Test that deleting a node updates tree's size."""
+    small_tree.delete(40)
+    assert small_tree.size() ==  5
