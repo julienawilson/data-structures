@@ -134,11 +134,11 @@ class BinarySearchTree():
     def balance(self):
         """Return numerical representation of how balanced the tree is."""
         if self.root.left:
-            depth_left = self.depth(self.root.left)
+            depth_left = self.depth(self.root.left) + 1
         else:
             depth_left = 0
         if self.root.right:
-            depth_right = self.depth(self.root.right)
+            depth_right = self.depth(self.root.right) + 1
         else:
             depth_right = 0
         balance = depth_right - depth_left
@@ -204,52 +204,35 @@ class BinarySearchTree():
         """Get rid of a node. Or at least its connection."""
         target_node = self.search(value)
         if not target_node:
-            return None
+            return
         if not (target_node.left or target_node.right):
             if target_node.value > target_node.parent.value:
                 target_node.parent.right = None
-                target_node.parent = None
-                self._size -= 1
             else:
                 target_node.parent.left = None
-                target_node.parent = None
-                self._size -= 1
         elif not (target_node.left and target_node.right):
             if target_node.left:
-                if target_node.value < target_node.parent.value:
-                    target_node.left.parent = target_node.parent
-                    target_node.parent.left = target_node.left
-                else:
-                    target_node.left.parent = target_node.parent
-                    target_node.parent.right = target_node.left
-                self._size -= 1
-                target_node.parent = None
-                target_node.left = None
-            if target_node.right:
-                if target_node.value < target_node.parent.value:
-                    target_node.right.parent = target_node.parent
-                    target_node.parent.left = target_node.right
-                else:
-                    target_node.right.parent = target_node.parent
-                    target_node.parent.right = target_node.right
-                self._size -= 1
-                target_node.parent = None
-                target_node.right = None
+                target_node.left.parent = target_node.parent
+                target_node.parent.left = target_node.left
+            else:
+                target_node.right.parent = target_node.parent
+                target_node.parent.right = target_node.right
         else:
-            del_node = self.search(value)
-            current_node = del_node.right
+            current_node = target_node.right
             while current_node.left:
                 current_node = current_node.left
             replace_node = current_node
             self.delete(current_node.value)
-            if del_node.parent:
-                replace_node.parent = del_node.parent
-                if replace_node.value < del_node.value:
-                    del_node.parent.left = replace_node
+            self._size += 1  # undoes size change within delete
+            if target_node.parent:
+                replace_node.parent = target_node.parent
+                if replace_node.value < target_node.value:
+                    target_node.parent.left = replace_node
                 else:
-                    del_node.parent.right = replace_node
-            replace_node.left = del_node.left
-            replace_node.right = del_node.right
-            del_node.parent = None
-            del_node.left = None
-            del_node.right = None
+                    target_node.parent.right = replace_node
+            replace_node.left = target_node.left
+            replace_node.right = target_node.right
+        target_node.parent = None
+        target_node.left = None
+        target_node.right = None
+        self._size -= 1
