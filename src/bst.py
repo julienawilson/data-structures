@@ -131,14 +131,14 @@ class BinarySearchTree():
                 else:
                     return False
 
-    def balance(self):
-        """Return numerical representation of how balanced the tree is."""
-        if self.root.left:
-            depth_left = self.depth(self.root.left) + 1
+    def balance(self, node=self.root):
+        """Return numerical representation of how balanced the tree (or branches) is."""
+        if node.left:
+            depth_left = self.depth(node.left) + 1
         else:
             depth_left = 0
-        if self.root.right:
-            depth_right = self.depth(self.root.right) + 1
+        if node.right:
+            depth_right = self.depth(node.right) + 1
         else:
             depth_right = 0
         balance = depth_right - depth_left
