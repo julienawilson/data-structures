@@ -1,19 +1,20 @@
 """Classes for binary search tree.
 
 Methods include:
-insert(self, val): Insert value into tree; if value already exists, ignore it.
-search(self, val): Return node containing that value, else None.
-size(self): Return number of nodes/vertices in tree, 0 if empty.
-depth(self): Return number of levels in tree. Tree with one value has depth of 0.
-contains(self, val): Return True if value is in tree, False if not.
-balance(self): Return a positive or negative integer representing tree's balance.
+insert(val): Insert value into tree; if value already exists, ignore it. Method autobalances after insertion.
+search(val): Return node containing that value, else None.
+size(): Return number of nodes/vertices in tree, 0 if empty.
+depth(): Return number of levels in tree. Tree with one value has depth of 0.
+contains(val): Return True if value is in tree, False if not.
+balance(): Return a positive or negative integer representing tree's balance.
     Trees that are higher on the left than the right should return a positive value;
     trees that are higher on the right than the left should return a negative value;
     an ideally-balanced tree should return 0.
-in_order(self): Return a generator that returns each node value from in-order traversal.
-pre_order(self): Return a generator that returns each node value from pre-order traversal.
-post_order(self): Return a generator that returns each node value from post_order traversal.
-breadth_first(self): Return a generator returns each node value from breadth-first traversal.
+in_order(): Return a generator that returns each node value from in-order traversal.
+pre_order(): Return a generator that returns each node value from pre-order traversal.
+post_order(): Return a generator that returns each node value from post_order traversal.
+breadth_first(): Return a generator returns each node value from breadth-first traversal.
+delete(value): Delete a node's connections (edges), effectively deleting node.
 
 """
 
@@ -151,17 +152,17 @@ class BinarySearchTree():
 
     def autobalance(self, node=None):
         """Make sure tree rebalances itself."""
-        # import pdb; pdb.set_trace()
         if node is None:
             node = self.root
         nodes = self.post_order()
         while True:
             try:
                 this_node = next(nodes)
+                if abs(self.balance(this_node)) > 1:
+                    self.rebalance(this_node)
             except StopIteration:
                 break
-            if abs(self.balance(this_node)) > 1:
-                self.rebalance(this_node)
+
                 # pass
 
     def rebalance(self, node):
