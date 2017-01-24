@@ -43,7 +43,7 @@ class BinarySearchTree():
         self._size = 0
         self.root = None
 
-    def insert(self, value):
+    def insert(self, value, autobalance=True):
         """Insert a value in to the binary search tree."""
         if self.root is None:
             self.root = Node(value)
@@ -69,7 +69,8 @@ class BinarySearchTree():
                     break
             else:
                 break
-        self.autobalance()
+        if autobalance:
+            self.autobalance()
 
     def search(self, value):
         """Search the Binary Search Tree for a value, return node or none."""
