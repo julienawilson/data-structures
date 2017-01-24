@@ -68,6 +68,7 @@ class BinarySearchTree():
                     break
             else:
                 break
+        self.autobalance()
 
     def search(self, value):
         """Search the Binary Search Tree for a value, return node or none."""
@@ -131,9 +132,11 @@ class BinarySearchTree():
                 else:
                     return False
 
-    def balance(self, node=None):
+    def balance(self, node='root'):
         """Return numerical representation of how balanced the tree (or branches) is."""
         if node is None:
+            return 0
+        if node == 'root':
             node = self.root
         if node.left:
             depth_left = self.depth(node.left) + 1
@@ -148,26 +151,51 @@ class BinarySearchTree():
 
     def autobalance(self, node=None):
         """Make sure tree rebalances itself."""
+        # import pdb; pdb.set_trace()
         if node is None:
             node = self.root
         nodes = self.post_order()
-        this_node = next(nodes)
-        if abs(self.balance(this_node)) > 1:
-            pass
+        while True:
+            try:
+                this_node = next(nodes)
+            except StopIteration:
+                break
+            if abs(self.balance(this_node)) > 1:
+                self.rebalance(this_node)
+                # pass
 
     def rebalance(self, node):
         """Balance the given node."""
-        if self.balance(node) < -1 and self.balance(node.left) < 0:
-            pass
+        if self.balance(node) > 1:
+            if self.balance(node.right) >= 1:
+                self.rotate_left(node)
+            else:
+                self.rotate_right(node.right)
+                self.rotate_left(node)
+        elif self.balance(node) < 1:
+            if self.balance(node.left) >= 1:
+                self.rotate_right(node)
+            else:
+                self.rotate_left(node.left)
+                self.rotate_right(node)
 
-    #  deleting 35 but no rotating anything 
-    def rotate_right(self, node, holder_node=None): 
+
+    #  deleting 35 but no rotating anything
+    def rotate_right(self, node, holder_node=None):
         """Helper function to shift nodes clockwise."""
-        if node.left.right:
-            holder_node = node.left.right
-        node.left.right = node
+        if node is None:
+            return
+        try:
+            if node.left.right:
+                holder_node = node.left.right
+        except AttributeError:
+            pass
+        if node.left:
+            node.left.parent = node.parent
+            node.left.right = node
+        if node.parent:
+            node.parent.left = node.left
         node.parent = node.left
-        node.left.parent = None
         node.left = holder_node
         if holder_node:
             node.left.parent = node
@@ -176,11 +204,20 @@ class BinarySearchTree():
 
     def rotate_left(self, node, holder_node=None):
         """Helper function to shift nodes counterclockwise."""
-        if node.left.right:
-            holder_node = node.right.left
-        node.right.left = node
+        if node is None:
+            return
+        try:
+            if node.right.left:
+                holder_node = node.right.left
+        except AttributeError:
+            pass
+
+        if node.right:
+            node.right.parent = node.parent
+            node.right.left = node
+        if node.parent:
+            node.parent.right = node.right
         node.parent = node.right
-        node.right.parent = None
         node.right = holder_node
         if holder_node:
             node.right.parent = node

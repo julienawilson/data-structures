@@ -21,6 +21,8 @@ def small_tree():
 @pytest.fixture()
 def weird_tree():
     """Grow a small tree with five nodes."""
+    import pdb; pdb.set_trace()
+
     tree = BinarySearchTree()
     tree.insert(50)
     tree.insert(79)
@@ -218,6 +220,7 @@ def test_balance_on_weird_tree(weird_tree):
     """Test balance of smal tree fixture."""
     assert weird_tree.balance() == 4
 
+
 def test_balance_w_no_left_nodes():
     b_tree = BinarySearchTree()
     b_tree.insert(17)
@@ -367,6 +370,7 @@ def test_bfs_weird_tree(weird_tree):
 
 def test_delete_node_with_no_children(small_tree):
     """Test calling delete on node with no children."""
+    import pdb; pdb.set_trace()
     small_tree.delete(35)
     assert small_tree.search(35) == None
 
@@ -412,11 +416,12 @@ def test_delete_node_annuls_own_connections(small_tree):
 def test_delete_updates_size(small_tree):
     """Test that deleting a node updates tree's size."""
     small_tree.delete(40)
-    assert small_tree.size() ==  5
+    assert small_tree.size() == 5
 
 
 def test_delete_node_with_two_childs_updates_size(small_tree):
     """Test that delete node with two childs updates size."""
+    import pdb; pdb.set_trace()
     small_tree.delete(80)
     assert small_tree.size() == 5
 
@@ -483,13 +488,14 @@ def test_rotate_right_small_tree_assign_child_not_root(small_tree):
 
 def test_rotate_right_small_tree_assign_parent_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
+    import pdb; pdb.set_trace()
     small_tree.rotate_right(small_tree.search(40))
-    import pdb; pdb.set_trace()  # deleting 35 but no rotating anything 
+    # import pdb; pdb.set_trace()  # deleting 35 but no rotating anything 
     assert small_tree.search(50).left.value == 35
 
 
 def test_rotate_right_small_tree_assign_right_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
     small_tree.rotate_right(small_tree.search(40))
-    import pdb; pdb.set_trace()  #  deleting 35 but no rotating anything 
-    assert small_tree.search(35).right is None
+    # import pdb; pdb.set_trace()  #  deleting 35 but no rotating anything 
+    assert small_tree.search(35).left is None
