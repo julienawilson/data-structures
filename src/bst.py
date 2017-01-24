@@ -1,7 +1,8 @@
 """Classes for binary search tree.
 
 Methods include:
-insert(val): Insert value into tree; if value already exists, ignore it. Method autobalances after insertion.
+insert(val): Insert value into tree; if value already exists, ignore it.
+    Method autobalances after insertion, and tree size increments by one.
 search(val): Return node containing that value, else None.
 size(): Return number of nodes/vertices in tree, 0 if empty.
 depth(): Return number of levels in tree. Tree with one value has depth of 0.
@@ -15,6 +16,7 @@ pre_order(): Return a generator that returns each node value from pre-order trav
 post_order(): Return a generator that returns each node value from post_order traversal.
 breadth_first(): Return a generator returns each node value from breadth-first traversal.
 delete(value): Delete a node's connections (edges), effectively deleting node.
+    Method autobalances after deletion, and tree size decrements by one.
 
 """
 
@@ -70,7 +72,7 @@ class BinarySearchTree():
             else:
                 break
         if autobalance:
-            self.autobalance()
+            self._autobalance()
 
     def search(self, value):
         """Search the Binary Search Tree for a value, return node or none."""
@@ -151,7 +153,7 @@ class BinarySearchTree():
         balance = depth_right - depth_left
         return balance
 
-    def autobalance(self, node=None):
+    def _autobalance(self, node=None):
         """Make sure tree rebalances itself."""
         if node is None:
             node = self.root
@@ -160,28 +162,28 @@ class BinarySearchTree():
             try:
                 this_node = next(nodes)
                 if abs(self.balance(this_node)) > 1:
-                    self.rebalance(this_node)
+                    self._rebalance(this_node)
             except StopIteration:
                 break
 
                 # pass
 
-    def rebalance(self, node):
+    def _rebalance(self, node):
         """Balance the given node."""
         if self.balance(node) > 1:
             if self.balance(node.right) >= 1:
-                self.rotate_left(node)
+                self._rotate_left(node)
             else:
-                self.rotate_right(node.right)
-                self.rotate_left(node)
+                self._rotate_right(node.right)
+                self._rotate_left(node)
         elif self.balance(node) < -1:
             if self.balance(node.left) <= -1:
-                self.rotate_right(node)
+                self._rotate_right(node)
             else:
-                self.rotate_left(node.left)
-                self.rotate_right(node)
+                self._rotate_left(node.left)
+                self._rotate_right(node)
 
-    def rotate_right(self, node, holder_node=None):
+    def _rotate_right(self, node, holder_node=None):
         """Helper function to shift nodes clockwise."""
         if node is None:
             return
@@ -202,7 +204,7 @@ class BinarySearchTree():
         if node == self.root:
             self.root = node.parent
 
-    def rotate_left(self, node, holder_node=None):
+    def _rotate_left(self, node, holder_node=None):
         """Helper function to shift nodes counterclockwise."""
         if node is None:
             return
@@ -280,7 +282,7 @@ class BinarySearchTree():
                 trav_list.enqueue(current_node.right)
             yield current_node
 
-    def delete(self, value):
+    def delete(self, value, autobalance=True):
         """Get rid of a node. Or at least its connection."""
         target_node = self.search(value)
         if not target_node:
@@ -316,3 +318,6 @@ class BinarySearchTree():
         target_node.left = None
         target_node.right = None
         self._size -= 1
+        if autobalance:
+            self._autobalance()
+

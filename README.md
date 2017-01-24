@@ -23,7 +23,7 @@ A linked list that points in both directions
 A tree of nodes sorted by values less than and greater than root branching to the left and right, respectively.
 
 Methods include:
-* insert(self, val): Insert value into tree; if value already exists, ignore it.
+* insert(self, val): Insert value into tree; if value already exists, ignore it. Method autobalances after insertion, and tree size increments by one.
 * search(self, val): Return node containing that value, else None.
 * size(self): Return number of nodes/vertices in tree, 0 if empty.
 * depth(self): Return number of levels in tree. Tree with one value has depth of 0.
@@ -36,4 +36,7 @@ Methods include:
 * pre_order(self): Return a generator that returns each node value from pre-order traversal.
 * post_order(self): Return a generator that returns each node value from post_order traversal.
 * breadth_first(self): Return a generator returns each node value from breadth-first traversal.
+* delete(value): Delete a node's connections (edges), effectively deleting node. Method autobalances after deletion, and tree size decrements by one.
+
+
 

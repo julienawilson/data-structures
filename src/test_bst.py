@@ -369,19 +369,19 @@ def test_bfs_weird_tree(weird_tree):
 
 def test_delete_node_with_no_children(small_tree):
     """Test calling delete on node with no children."""
-    small_tree.delete(35)
+    small_tree.delete(35, autobalance=False)
     assert small_tree.search(35) == None
 
 
 def test_delete_node_with_no_children_update_size(small_tree):
     """Test calling delete on node with no children."""
-    small_tree.delete(35)
+    small_tree.delete(35, autobalance=False)
     assert small_tree.size() == 5
 
 
 def test_delete_node_with_no_children_annuls_parent_connection(small_tree):
     """Test calling delete on node with no children kills parent's connection."""
-    small_tree.delete(35)
+    small_tree.delete(35, autobalance=False)
     assert small_tree.search(40).left is None
     with pytest.raises(AttributeError):
         assert small_tree.search(35).parent
@@ -389,21 +389,21 @@ def test_delete_node_with_no_children_annuls_parent_connection(small_tree):
 
 def test_delete_node_with_no_children_annuls_own_connection(small_tree):
     """Test calling delete on node with no children kills parent's connection."""
-    small_tree.delete(35)
+    small_tree.delete(35, autobalance=False)
     with pytest.raises(AttributeError):
         assert small_tree.search(35).parent
 
 
 def test_delete_node_with_one_child_reassigns_connections(small_tree):
     """Test deleting a node reassigns its one child to expected new parent."""
-    small_tree.delete(40)
+    small_tree.delete(40, autobalance=False)
     assert small_tree.search(35).parent.value == 50
     assert small_tree.search(50).left.value == 35
 
 
 def test_delete_node_annuls_own_connections(small_tree):
     """Test calling delete on node kills parent and child connections."""
-    small_tree.delete(40)
+    small_tree.delete(40, autobalance=False)
     with pytest.raises(AttributeError):
         assert small_tree.search(40).parent is None
     with pytest.raises(AttributeError):
@@ -412,85 +412,85 @@ def test_delete_node_annuls_own_connections(small_tree):
 
 def test_delete_updates_size(small_tree):
     """Test that deleting a node updates tree's size."""
-    small_tree.delete(40)
+    small_tree.delete(40, autobalance=False)
     assert small_tree.size() == 5
 
 
 def test_delete_node_with_two_childs_updates_size(small_tree):
     """Test that delete node with two childs updates size."""
-    small_tree.delete(80)
+    small_tree.delete(80, autobalance=False)
     assert small_tree.size() == 5
 
 
 def test_rotate_left_small_tree_assign_child(small_tree):
     """Test that left rotation  on small tree reassigns children."""
-    small_tree.rotate_left(small_tree.root)
+    small_tree._rotate_left(small_tree.root)
     assert small_tree.search(80).left.value == 50
 
 
 def test_rotate_left_small_tree_assign_parent(small_tree):
     """Test that left rotation  on small tree reassigns parent."""
-    small_tree.rotate_left(small_tree.root)
+    small_tree._rotate_left(small_tree.root)
     assert small_tree.search(50).parent.value == 80
 
 
 def test_rotate_left_reassigns_root(small_tree):
     """Test the left rotation reassigns root."""
-    small_tree.rotate_left(small_tree.root)
+    small_tree._rotate_left(small_tree.root)
     assert small_tree.root.value == 80
 
 
 def test_rotate_left_doesnt_reassign_root(small_tree):
     """Test the left rotation does not reassign root."""
-    small_tree.rotate_left(small_tree.search(80))
+    small_tree._rotate_left(small_tree.search(80))
     assert small_tree.root.value == 50
 
 
 def test_rotate_left_small_tree_assign_parent_not_root(small_tree):
     """Test that left rotation  on small tree reassigns children."""
-    small_tree.rotate_left(small_tree.search(80))
+    small_tree._rotate_left(small_tree.search(80))
     assert small_tree.search(80).parent.value == 90
 
 
 def test_rotate_left_small_tree_assign_child_not_root(small_tree):
     """Test that left rotation  on small tree reassigns children."""
-    small_tree.rotate_left(small_tree.search(80))
+    small_tree._rotate_left(small_tree.search(80))
     assert small_tree.search(80).right is None
 
 
 def test_rotate_right_small_tree_assign_child(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    small_tree.rotate_right(small_tree.root)
+    small_tree._rotate_right(small_tree.root)
     assert small_tree.search(40).right.value == 50
 
 
 def test_rotate_right_small_tree_assign_parent(small_tree):
     """Test that right rotation  on small tree reassigns parent."""
-    small_tree.rotate_right(small_tree.root)
+    small_tree._rotate_right(small_tree.root)
     assert small_tree.search(50).parent.value == 40
 
 
 def test_rotate_right_small_tree_assign_parent_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    small_tree.rotate_right(small_tree.search(40))
+    small_tree._rotate_right(small_tree.search(40))
     assert small_tree.search(40).parent.value == 35
 
 
 def test_rotate_right_small_tree_assign_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    small_tree.rotate_right(small_tree.search(40))
+    small_tree._rotate_right(small_tree.search(40))
     assert small_tree.search(40).left is None
 
 
 def test_rotate_right_small_tree_assign_parent_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    small_tree.rotate_right(small_tree.search(40))
+    small_tree._rotate_right(small_tree.search(40))
     assert small_tree.search(50).left.value == 35
 
 
 def test_rotate_right_small_tree_assign_right_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    small_tree.rotate_right(small_tree.search(40))
+    small_tree._rotate_right(small_tree.search(40))
     assert small_tree.search(35).left is None
 
 
