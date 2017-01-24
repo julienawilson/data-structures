@@ -152,7 +152,6 @@ class BinarySearchTree():
 
     def autobalance(self, node=None):
         """Make sure tree rebalances itself."""
-        # import pdb; pdb.set_trace()
         if node is None:
             node = self.root
         nodes = self.post_order()
@@ -173,15 +172,13 @@ class BinarySearchTree():
             else:
                 self.rotate_right(node.right)
                 self.rotate_left(node)
-        elif self.balance(node) < 1:
-            if self.balance(node.left) >= 1:
+        elif self.balance(node) < -1:
+            if self.balance(node.left) <= -1:
                 self.rotate_right(node)
             else:
                 self.rotate_left(node.left)
                 self.rotate_right(node)
 
-
-    #  deleting 35 but no rotating anything
     def rotate_right(self, node, holder_node=None):
         """Helper function to shift nodes clockwise."""
         if node is None:

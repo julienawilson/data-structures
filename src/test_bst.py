@@ -21,8 +21,6 @@ def small_tree():
 @pytest.fixture()
 def weird_tree():
     """Grow a small tree with five nodes."""
-    # import pdb; pdb.set_trace()
-
     tree = BinarySearchTree()
     tree.insert(50, autobalance=False)
     tree.insert(79, autobalance=False)
@@ -117,7 +115,6 @@ def test_inserting_less_but_more_into_populated_tree(small_tree):
 def test_inserting_lower_item_into_populated_tree(small_tree):
     """Test inserting value that pushes all the way left."""
     small_tree.insert(33, autobalance=False)
-    import pdb; pdb.set_trace()
     assert small_tree.root.left.left.left.value == 33
 
 
@@ -223,6 +220,7 @@ def test_balance_on_weird_tree(weird_tree):
 
 
 def test_balance_w_no_left_nodes():
+    """Test the balance of a tree with only a root and its right child."""
     b_tree = BinarySearchTree()
     b_tree.insert(17)
     b_tree.insert(43)
@@ -371,7 +369,6 @@ def test_bfs_weird_tree(weird_tree):
 
 def test_delete_node_with_no_children(small_tree):
     """Test calling delete on node with no children."""
-    # import pdb; pdb.set_trace()
     small_tree.delete(35)
     assert small_tree.search(35) == None
 
@@ -404,7 +401,6 @@ def test_delete_node_with_one_child_reassigns_connections(small_tree):
     assert small_tree.search(50).left.value == 35
 
 
-
 def test_delete_node_annuls_own_connections(small_tree):
     """Test calling delete on node kills parent and child connections."""
     small_tree.delete(40)
@@ -422,7 +418,6 @@ def test_delete_updates_size(small_tree):
 
 def test_delete_node_with_two_childs_updates_size(small_tree):
     """Test that delete node with two childs updates size."""
-    # import pdb; pdb.set_trace()
     small_tree.delete(80)
     assert small_tree.size() == 5
 
@@ -489,14 +484,26 @@ def test_rotate_right_small_tree_assign_child_not_root(small_tree):
 
 def test_rotate_right_small_tree_assign_parent_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
-    # import pdb; pdb.set_trace()
     small_tree.rotate_right(small_tree.search(40))
-    # import pdb; pdb.set_trace()  # deleting 35 but no rotating anything 
     assert small_tree.search(50).left.value == 35
 
 
 def test_rotate_right_small_tree_assign_right_child_not_root(small_tree):
     """Test that right rotation  on small tree reassigns children."""
     small_tree.rotate_right(small_tree.search(40))
-    # import pdb; pdb.set_trace()  #  deleting 35 but no rotating anything 
     assert small_tree.search(35).left is None
+
+
+def test_tree_autobalances():
+    """Test that a right skewed tree is balanced after many insertions."""
+    tree = BinarySearchTree()
+    tree.insert(50)
+    tree.insert(60)
+    tree.insert(70)
+    tree.insert(80)
+    tree.insert(90)
+    tree.insert(100)
+    tree.insert(66)
+    tree.insert(59)
+    tree.insert(89)
+    assert abs(tree.balance()) <= 1
