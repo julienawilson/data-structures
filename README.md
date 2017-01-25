@@ -46,5 +46,12 @@ Methods include:
 * breadth_first(self): Return a generator returns each node value from breadth-first traversal.
 * delete(value): Delete a node's connections (edges), effectively deleting node. Method autobalances after deletion, and tree size decrements by one.
 
+##Hash Table
+Stores key-value pairs using a given hashing algorithm. Choices for hashing algorithms are additive hash and xor hash. 
+Additive hash sums the Unicode code point for each letter in the word or string, then calls modulo with the number of buckets in the table.
+XOR hash runs exclusive or with the letters of the word or string.
 
+Methods include:
+set(key, value): Add a key-value pair to the hash table.
+get(key): Retrieve a value for the given key.
 

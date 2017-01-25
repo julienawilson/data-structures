@@ -1,4 +1,15 @@
-"""Class for hash tables."""
+"""Class for hash tables.
+
+Choices for hashing algorithms are additive hash and xor hash. 
+Additive hash sums the Unicode code point for each letter in the word or string, 
+then calls modulo with the number of buckets in the table.
+XOR hash runs exclusive or with the letters of the word or string.
+Methods include:
+set(key, value): Add a key-value pair to the hash table.
+get(key): Retrieve a value for the given key.
+
+"""
+
 
 
 class HashTable(object):
