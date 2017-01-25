@@ -21,7 +21,7 @@ class HashTable(object):
         return sum([ord(char) for char in list(word)]) % self._size
 
     def set(self, key, value):
-        """Set a new key value pair in the has table."""
+        """Set a new key-value pair in the hash table."""
         if type(key) is not str:
             raise TypeError("Key for hash table must be a string.")
         hash_val = self._hash_alg(key)
