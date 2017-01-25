@@ -30,3 +30,13 @@ class HashTable(object):
                 pair[1] = value
                 return
         self.buckets[hash_val].append([key, value])
+
+    def get(self, key):
+        """Get the value from the hash table."""
+        if type(key) is not str:
+            raise TypeError("Key for hash table must be a string.")
+        hash_val = self._hash_alg(key)
+        for pair in self.buckets[hash_val]:
+            if pair[0] == key:
+                return pair[1]
+        return
