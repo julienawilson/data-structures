@@ -13,12 +13,21 @@ class HashTable(object):
     def _hash(self, hash_alg):
         if hash_alg == 'additive':
             return self._additive_hash
+        if hash_alg == 'xor':
+            return self._xor_hash
         else:
-            raise ValueError("Please enter a valid hash algorithm.  The options are 'additive'.")
+            raise ValueError("Please enter a valid hash algorithm.  The options are 'additive' and 'xor'.")
 
     def _additive_hash(self, word):
         """Return Additive hash value."""
         return sum([ord(char) for char in list(word)]) % self._size
+
+    def _xor_hash(self, word):
+        """Return a xor hash."""
+        hash_val = 0
+        for i in range(len(word)):
+            hash_val ^= ord(word[i])
+        return hash_val
 
     def set(self, key, value):
         """Set a new key-value pair in the hash table."""
