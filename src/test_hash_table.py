@@ -23,6 +23,7 @@ def test_set_add_a_nonstring():
     with pytest.raises(TypeError):
         h_table.set(3, 'AI')
 
+
 def test_set_add_word():
     """Test that set() adds key-value pair."""
     h_table = HashTable(10)
@@ -123,4 +124,3 @@ def test_dictionary_and_change_with_xor():
             not_matching += 1
     f_again.close()
     assert not_matching == 1
-
