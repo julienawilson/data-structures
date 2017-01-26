@@ -52,6 +52,9 @@ Additive hash sums the Unicode code point for each letter in the word or string,
 XOR hash runs exclusive or with the letters of the word or string.
 
 Methods include:
-set(key, value): Add a key-value pair to the hash table.
-get(key): Retrieve a value for the given key.
-
+* set(key, value): Add a key-value pair to the hash table. calls a hash function, but is otherwise O(k) where k is the number of items in the bucket.
+* get(key): Retrieve a value for the given key. Add a key-value pair to the hash table. calls a hash function, but is otherwise O(k) where k is the number of items in the bucket.
+* _hash(hash_alg): Decide which hash algorithm to call. O(1)
+* _additive_hash(word): return a hash using an additive method; O(n) where n=length of word
+* _xor_hash(word): return a hash using an additive method; O(n) where n=length of word
+*
