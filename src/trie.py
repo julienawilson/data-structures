@@ -29,7 +29,7 @@ class TrieTree(object):
     def __init__(self):
         """Instantiate an empty trie tree."""
         self.root = {}
-        self.size = 0
+        self._size = 0
 
     def contains(self, word):
         """Check whether a word is in the trie tree."""
@@ -55,14 +55,17 @@ class TrieTree(object):
             else:
                 this_node[letter] = {}
                 this_node = this_node[letter]
-        self.size += 1
+        self._size += 1
 
     def remove(self, word):
         """Remove a word from the trie."""
         if not self.contains(word):
             raise AttributeError
+        if self._size == 1:
+            self.root = {}
+            self._size = 0
         word += "$"
-        self.bubble_down(word, self.root, 0)
+        self._bubble_down(word, self.root, 0)
 
     def bubble_down(self, word, node_dict, idx):
         """Search for end of a word and delete it."""
@@ -70,7 +73,12 @@ class TrieTree(object):
         if next_letter != '$':
             if next_letter in node_dict:
                 node_dict = node_dict[next_letter]
-                self.bubble_down(word, node_dict, idx + 1)
+                self._bubble_down(word, node_dict, idx + 1)
         if len(node_dict) > 1:
+            self._size -= 1
             del node_dict[next_letter]
             return
+
+    def size(self):
+        """Retrun the size of the trie."""
+        return self._size
