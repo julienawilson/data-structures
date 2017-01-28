@@ -104,3 +104,28 @@ def test_remove_short_word_w_shared_root(empty_trie):
     empty_trie.insert("golf")
     empty_trie.remove("go")
     assert empty_trie.contains("go") is False
+
+
+def test_remove_short_word_w_shared_root_keeps_longer_word(empty_trie):
+    """Test removing a word that has a longer cousin in the tree keeps long word."""
+    empty_trie.insert("go")
+    empty_trie.insert("golf")
+    empty_trie.remove("go")
+    assert empty_trie.contains("golf") is True
+
+
+def test_remove_word_w_shorter_root_word(empty_trie):
+    """Test removing a word that has a shorter cousin in the tree."""
+    empty_trie.insert("go")
+    empty_trie.insert("golf")
+    empty_trie.remove("golf")
+    assert empty_trie.contains("golf") is False
+
+def test_remove_word_w_shorter_root_word_keeps_shorter_one(empty_trie):
+    """Test that removing a word with a word root also in tree keeps the short word."""
+    empty_trie.insert("go")
+    empty_trie.insert("golf")
+    empty_trie.remove("golf")
+    assert empty_trie.contains("go") is True
+
+
