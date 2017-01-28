@@ -60,7 +60,7 @@ class TrieTree(object):
     def remove(self, word):
         """Remove a word from the trie."""
         if not self.contains(word):
-            return
+            raise AttributeError
         word += "$"
         self.bubble_down(word, self.root, 0)
 
