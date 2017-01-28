@@ -56,3 +56,21 @@ class TrieTree(object):
                 this_node[letter] = {}
                 this_node = this_node[letter]
         self.size += 1
+
+    def remove(self, word):
+        """Remove a word from the trie."""
+        if not self.contains(word):
+            return
+        word += "$"
+        self.bubble_down(word, self.root, 0)
+
+    def bubble_down(self, word, node_dict, idx):
+        """Search for end of a word and delete it."""
+        next_letter = word[idx]
+        if next_letter != '$':
+            if next_letter in node_dict:
+                node_dict = node_dict[next_letter]
+                self.bubble_down(word, node_dict, idx + 1)
+        if len(node_dict) > 1:
+            del node_dict[next_letter]
+            return
