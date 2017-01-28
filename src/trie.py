@@ -61,6 +61,9 @@ class TrieTree(object):
         """Remove a word from the trie."""
         if not self.contains(word):
             raise AttributeError
+        if self.size == 1:
+            self.root = {}
+            self.size = 0
         word += "$"
         self.bubble_down(word, self.root, 0)
 
@@ -72,5 +75,6 @@ class TrieTree(object):
                 node_dict = node_dict[next_letter]
                 self.bubble_down(word, node_dict, idx + 1)
         if len(node_dict) > 1:
+            self.size -= 1
             del node_dict[next_letter]
             return
