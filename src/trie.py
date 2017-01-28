@@ -7,17 +7,20 @@ as well as from initial substrings.
 Methods include:
 contains(word): Check to see whether a word is in the tree.
 insert(word): Inserts a word into the trie tree.
-"""
+# """
 
 
-class Node(object):
-    """A class for the tree's nodes."""
+# class Node(object):
+#     """A class for the tree's nodes."""
 
-    def __init__(self, value):
-        """Instantiate a node in the tree."""
-        if value.isalpha():
-            value = value.lower()
-            self.children = {}
+#     def __init__(self, value):
+#         """Instantiate a node in the tree."""
+#         if value.isalpha() or value in ['$', '*']:
+#             value = value.lower()
+#             self.children = {}
+#             self.value = value
+#         else:
+#             raise ValueError('That value is not acceptable.')
 
 
 class TrieTree(object):
@@ -25,19 +28,20 @@ class TrieTree(object):
 
     def __init__(self):
         """Instantiate an empty trie tree."""
-        self.root = Node("*")
+        self.root = {}
         self.size = 0
 
     def contains(self, word):
         """Check whether a word is in the trie tree."""
         this_node = self.root
-        word += "$"
         for letter in word:
-            if letter in this_node.children:
-                this_node = this_node.children[letter]
-                if this_node == "$":
-                    return True
-            return False
+            if letter in this_node:
+                this_node = this_node[letter]
+            else:
+                return False
+        if '$' in this_node:
+            return True
+        return False
 
     def insert(self, word):
         """Insert a word into the trie tree."""
@@ -46,8 +50,9 @@ class TrieTree(object):
             return
         word += "$"
         for letter in word:
-            if letter in this_node.children:
-                this_node = this_node.chilren[letter]
+            if letter in this_node:
+                this_node = this_node[letter]
             else:
-                this_node.children[letter] = Node(letter)
+                this_node[letter] = {}
+                this_node = this_node[letter]
         self.size += 1

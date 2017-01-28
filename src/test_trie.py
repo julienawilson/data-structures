@@ -12,8 +12,8 @@ def empty_trie():
 
 
 def test_trie_has_root(empty_trie):
-    """Test that an empty trie has a root of *."""
-    assert empty_trie.root == '*'
+    """Test that an empty trie has a root dict."""
+    assert empty_trie.root == {}
 
 
 def test_empty_trie_trie_size_zero(empty_trie):
@@ -35,4 +35,51 @@ def test_contains_false(empty_trie):
 def test_insert_makes_word_contains_true(empty_trie):
     """Test that contains returns true after inserting same word."""
     empty_trie.insert('maelstrom')
-    assert empty_trie.contins('maelstrom')
+    assert empty_trie.contains('maelstrom')
+
+
+def test_insert_makes_similar_word_contains_false(empty_trie):
+    """Test that contains returns true after inserting same word."""
+    empty_trie.insert('maelstrom')
+    assert not empty_trie.contains('maelstro')
+
+
+def test_insert_makes_similar_word_contains_false_again(empty_trie):
+    """Test that contains returns true after inserting same word."""
+    empty_trie.insert('maelstrom')
+    assert not empty_trie.contains('maelstrome')
+
+
+def test_insert_something_already_there(empty_trie):
+    """Test that a trie doesn't grow after inserting same word."""
+    empty_trie.insert('golf')
+    empty_trie.insert('golf')
+    assert empty_trie.size == 1
+
+
+def test_insert_subword_adds_word(empty_trie):
+    """Test that adding a word that is a slice of another word adds it."""
+    empty_trie.insert('golf')
+    empty_trie.insert('go')
+    assert empty_trie.size == 2
+
+
+def test_insert_subword_searchable(empty_trie):
+    """Test that adding a word that is a slice of another word adds it."""
+    empty_trie.insert('golf')
+    empty_trie.insert('go')
+    assert empty_trie.contains('go')
+
+
+def test_insert_longword(empty_trie):
+    """Test that adding a word that is a slice of another word adds it."""
+    empty_trie.insert('golf')
+    empty_trie.insert('golferhole')
+    assert empty_trie.size == 2
+
+
+def test_insert_longword_searchable(empty_trie):
+    """Test that adding a word that is a slice of another word adds it."""
+    empty_trie.insert('golf')
+    empty_trie.insert('golferhole')
+    assert empty_trie.contains('golferhole')
