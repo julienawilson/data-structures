@@ -87,16 +87,20 @@ def test_insert_longword_searchable(empty_trie):
 
 def test_remove_absent_word(empty_trie):
     """Test that removing a nonexistent word raises exception."""
-    with pytest.raises(AttributeError)
-        empty_trie.remove("gotcha") 
+    with pytest.raises(AttributeError):
+        empty_trie.remove("gotcha")
 
 
 def test_remove_truly_removes(empty_trie):
     """Test that remove method deletes a word from the trie tree."""
     empty_trie.insert("ephemeral")
     empty_trie.remove("ephemeral")
-    assert empty_trie.contains("ephemeral") == False
+    assert empty_trie.contains("ephemeral") is False
 
 
-# def test_remove_short_word_w_shared_root(empty_trie):
-#     """Test 
+def test_remove_short_word_w_shared_root(empty_trie):
+    """Test removing a word that has a longer cousin in the tree. So to speak."""
+    empty_trie.insert("go")
+    empty_trie.insert("golf")
+    empty_trie.remove("go")
+    assert empty_trie.contains("go") is False
