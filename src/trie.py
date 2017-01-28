@@ -10,6 +10,16 @@ insert(word): Inserts a word into the trie tree.
 """
 
 
+class Node(object):
+    """A class for the tree's nodes."""
+
+    def __init__(self, value):
+        """Instantiate a node in the tree."""
+        if value.isalpha():
+            value = value.lower()
+            self.children = {}
+
+
 class TrieTree(object):
     """A class for trie trees."""
 
