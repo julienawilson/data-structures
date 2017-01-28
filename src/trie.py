@@ -67,7 +67,7 @@ class TrieTree(object):
         word += "$"
         self._bubble_down(word, self.root, 0)
 
-    def bubble_down(self, word, node_dict, idx):
+    def _bubble_down(self, word, node_dict, idx):
         """Search for end of a word and delete it."""
         next_letter = word[idx]
         if next_letter != '$':
