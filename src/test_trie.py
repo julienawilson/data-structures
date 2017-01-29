@@ -11,6 +11,18 @@ def empty_trie():
     return empty_trie
 
 
+@pytest.fixture()
+def boop_trie():
+    """Build another sample trie for testing."""
+    from trie import TrieTree
+    boop_trie = TrieTree()
+    boop_trie.insert('bacon')
+    boop_trie.insert('boop')
+    boop_trie.insert('bolt')
+    boop_trie.insert('bolted')
+    return boop_trie
+
+
 def test_trie_has_root(empty_trie):
     """Test that an empty trie has a root dict."""
     assert empty_trie.root == {}
@@ -121,6 +133,7 @@ def test_remove_word_w_shorter_root_word(empty_trie):
     empty_trie.remove("golf")
     assert empty_trie.contains("golf") is False
 
+
 def test_remove_word_w_shorter_root_word_keeps_shorter_one(empty_trie):
     """Test that removing a word with a word root also in tree keeps the short word."""
     empty_trie.insert("go")
@@ -147,3 +160,14 @@ def test_size_after_remove(empty_trie):
     assert empty_trie.size() == 0
 
 
+def test_boop_tree_traversal(boop_trie):
+    """Test the traversal method on a boop tree."""
+    trav_gen = boop_trie.traversal('bo')
+    trave_list = []
+    trave_list.append(next(trav_gen) 
+    trave_list.append(next(trav_gen)
+    trave_list.append(next(trav_gen)
+    trave_list.append(next(trav_gen)
+    trave_list.append(next(trav_gen)
+    trave_list.append(next(trav_gen)
+    assert trave_list == ['o', 'b', 'l', 't', 'e', 'd']
