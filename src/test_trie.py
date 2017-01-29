@@ -164,10 +164,10 @@ def test_boop_tree_traversal(boop_trie):
     """Test the traversal method on a boop tree."""
     trav_gen = boop_trie.traversal('bo')
     trave_list = []
-    trave_list.append(next(trav_gen) 
-    trave_list.append(next(trav_gen)
-    trave_list.append(next(trav_gen)
-    trave_list.append(next(trav_gen)
-    trave_list.append(next(trav_gen)
-    trave_list.append(next(trav_gen)
-    assert trave_list == ['o', 'b', 'l', 't', 'e', 'd']
+    trave_list.append(next(trav_gen))
+    trave_list.append(next(trav_gen))
+    trave_list.append(next(trav_gen))
+    trave_list.append(next(trav_gen))
+    trave_list.append(next(trav_gen))
+    trave_list.append(next(trav_gen))
+    assert trave_list is ['o', 'b', 'l', 't', 'e', 'd']

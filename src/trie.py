@@ -56,7 +56,6 @@ class TrieTree(object):
 
     def _bubble_down(self, word, node_dict, idx):
         """Search for end of a word and delete it."""
-        # import pdb; pdb.set_trace()
         next_letter = word[idx]
         if next_letter != '$':
             if next_letter in node_dict:
@@ -73,21 +72,21 @@ class TrieTree(object):
         """Retrun the size of the trie."""
         return self._size
 
-
     def traversal(self, word):
         """."""
         node = self.root
         try:
             for letter in word:
                 node = node[letter]
-                rec_trav(node)
+            return self.rec_trav(node)
         except:
             IndexError
 
-    def rec_trav(node):
+    def rec_trav(self, node):
         """."""
-        for value in node:
-            if not "$":
-                yield
+        keys = sorted(node.keys())
+        for value in keys:
+            if value is not "$":
+                yield value
             node = node[value]
-            rec_trav(node)
+            yield from self.rec_trav(node)
