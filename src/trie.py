@@ -76,4 +76,18 @@ class TrieTree(object):
 
     def traversal(self, word):
         """."""
-        pass
+        node = self.root
+        try:
+            for letter in word:
+                node = node[letter]
+                rec_trav(node)
+        except:
+            IndexError
+
+    def rec_trav(node):
+        """."""
+        for value in node:
+            if not "$":
+                yield
+            node = node[value]
+            rec_trav(node)
