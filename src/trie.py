@@ -5,22 +5,9 @@ the initial letter of each word. Words can then branch from that initial,
 as well as from initial substrings.
 
 Methods include:
-contains(word): Check to see whether a word is in the tree.
-insert(word): Inserts a word into the trie tree.
-# """
-
-
-# class Node(object):
-#     """A class for the tree's nodes."""
-
-#     def __init__(self, value):
-#         """Instantiate a node in the tree."""
-#         if value.isalpha() or value in ['$', '*']:
-#             value = value.lower()
-#             self.children = {}
-#             self.value = value
-#         else:
-#             raise ValueError('That value is not acceptable.')
+contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
+insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
+"""
 
 
 class TrieTree(object):

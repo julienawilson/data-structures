@@ -55,3 +55,14 @@ Methods include:
 set(key, value): Add a key-value pair to the hash table.
 get(key): Retrieve a value for the given key.
 
+##Trie Trees
+Module is an implementation of a trie tree, using nested dictionaries instead of nodes.
+
+Words branch out from root, with root's immediate children being
+the initial letter of each word. Words can then branch from that initial,
+as well as from initial substrings.
+
+Methods include:
+contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
+insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
+
