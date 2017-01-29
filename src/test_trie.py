@@ -129,3 +129,21 @@ def test_remove_word_w_shorter_root_word_keeps_shorter_one(empty_trie):
     assert empty_trie.contains("go") is True
 
 
+def test_size_on_fresh_empty_tree(empty_trie):
+    """Test calling size on empty tree."""
+    assert empty_trie.size() == 0
+
+
+def test_size_on_tree_with_one_word(empty_trie):
+    """Test calling size on tree with one word."""
+    empty_trie.insert("minimal")
+    assert empty_trie.size() == 1
+
+
+def test_size_after_remove(empty_trie):
+    """Test calling size on tree updates after remove."""
+    empty_trie.insert("ephemeral")
+    empty_trie.remove("ephemeral")
+    assert empty_trie.size() == 0
+
+
