@@ -72,3 +72,8 @@ class TrieTree(object):
     def size(self):
         """Retrun the size of the trie."""
         return self._size
+
+
+    def traversal(self, word):
+        """."""
+        pass
