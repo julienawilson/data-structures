@@ -69,6 +69,7 @@ class TrieTree(object):
 
     def _bubble_down(self, word, node_dict, idx):
         """Search for end of a word and delete it."""
+        # import pdb; pdb.set_trace()
         next_letter = word[idx]
         if next_letter != '$':
             if next_letter in node_dict:
@@ -76,6 +77,8 @@ class TrieTree(object):
                 self._bubble_down(word, node_dict, idx + 1)
         if len(node_dict) > 1:
             self._size -= 1
+            if next_letter != '$':
+                next_letter = word[idx + 1]
             del node_dict[next_letter]
             return
 
