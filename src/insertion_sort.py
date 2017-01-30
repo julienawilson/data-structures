@@ -1,7 +1,7 @@
 """Insertion sort."""
 
 def insertion_sort(some_list):
-    """some doc."""
+    """It sorts."""
     if not hasattr(some_list, "__iter__"):
         raise(TypeError)
     idx = 0
