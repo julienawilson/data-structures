@@ -22,7 +22,7 @@ def merge(list1, list2):
         else:
             result.append(list2.pop(0))
     if list1:
-        result.append(list1.pop(0))
+        result += list1
     if list2:
-        result.append(list2.pop(0))
+        result += list2
     return result
