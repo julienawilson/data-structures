@@ -3,14 +3,14 @@
 
 def merge_sort(a_list):
     """Divide, conquer to sort list."""
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     if len(a_list) <= 1:
         return a_list
     midpoint = (len(a_list) // 2)
     first_half = a_list[:midpoint]
     second_half = a_list[midpoint:]
-    merge_sort(first_half)
-    merge_sort(second_half)
+    first_half = merge_sort(first_half)
+    second_half = merge_sort(second_half)
     return merge(first_half, second_half)
 
 
