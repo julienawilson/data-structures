@@ -17,3 +17,4 @@ def insertion_sort(some_list):
                 bw_idx -= 1
         idx += 1
     return some_list
+
