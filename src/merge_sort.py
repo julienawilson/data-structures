@@ -3,6 +3,7 @@
 
 def merge_sort(a_list):
     """Divide, conquer to sort list."""
+    import pdb; pdb.set_trace()
     if len(a_list) <= 1:
         return a_list
     midpoint = (len(a_list) // 2)
