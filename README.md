@@ -66,3 +66,7 @@ Methods include:
 contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
 insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
 
+##Quicksort
+An Implementation of a Quicksort sorting algorithm.
+
+Quicksort recursively divides the list in to two pieces around a pivot point, separating smaller and larger items, until the list is totally sorted.
