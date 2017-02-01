@@ -1,9 +1,19 @@
-"""Merge sort implementation."""
+"""Implementation of merge sort.
+
+This version recusrively divides the input list into sublists small enough
+to be sorted on their own, then merges them. When run as a script, 
+a timeit function runs merge_sort() on a list of 200 random integers 
+three times, and returns the run time for each.
+
+
+Methods include:
+merge_sort(a_list): Recursively divides list at midpoint, more or less.
+merge(list1, list2): A helper function to do the comparisons between values.
+"""
 
 
 def merge_sort(a_list):
     """Divide, conquer to sort list."""
-    # import pdb; pdb.set_trace()
     if len(a_list) <= 1:
         return a_list
     midpoint = (len(a_list) // 2)
@@ -46,9 +56,3 @@ if __name__ == "__main__":
                         number=1000
                         )
           )
-
-    # print(timeit.repeat(stmt='g.breadth_first_traversal(random.choice(list(g.node_dict.keys())))',
-    #                     setup='from __main__ import SimpleGraph, g, random', repeat=3,
-    #                     number=1000
-    #                     )
-    #       )

@@ -66,3 +66,10 @@ Methods include:
 contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
 insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
 
+##Merge Sort
+This implementation of the merge sort algorithm recursively divides the input list into sublists small enough to be sorted on their own, then merges them.
+When run as a script, a timeit function runs merge_sort() on a list of 200 random integers three times, and returns the run time for each.
+
+Methods include:
+merge_sort(a_list): Recursively divides list at midpoint, more or less.
+merge(list1, list2): A helper function to do the comparisons between values.
