@@ -66,3 +66,6 @@ Methods include:
 contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
 insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
 
+##Insertion Sort
+Sorts a list in-place, iterating through the list, reordering the list from index 0 up.
+

@@ -1,4 +1,8 @@
-"""Insertion sort."""
+"""Implementation of insertion sort.
+
+Sort is done in-place iterating through the list, reordering the list
+from index 0 up.
+"""
 
 def insertion_sort(some_list):
     """It sorts."""
