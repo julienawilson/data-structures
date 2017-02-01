@@ -70,3 +70,5 @@ insert(word): Inserts a word into the trie tree. O(k), where k is the length of 
 An Implementation of a Quicksort sorting algorithm.
 
 Quicksort recursively divides the list in to two pieces around a pivot point, separating smaller and larger items, until the list is totally sorted.
+
+When the script is run from the terminal, timit times 1000 executions of the code on a 200 item list.  Timit does this three times and returns the results, in seconds.
