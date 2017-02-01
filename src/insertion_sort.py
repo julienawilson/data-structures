@@ -1,11 +1,13 @@
 """Implementation of insertion sort.
 
 Sort is done in-place iterating through the list, reordering the list
-from index 0 up.
+from index 0 up. When run as a script, a timeit function runs merge_sort()
+on a list of 200 random integers three times, and returns the run time for each.
 """
 
+
 def insertion_sort(some_list):
-    """It sorts."""
+    """Sort list in-place iterating through list from index 0 up."""
     if not hasattr(some_list, "__iter__"):
         raise(TypeError)
     idx = 0

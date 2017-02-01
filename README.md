@@ -68,4 +68,6 @@ insert(word): Inserts a word into the trie tree. O(k), where k is the length of 
 
 ##Insertion Sort
 Sorts a list in-place, iterating through the list, reordering the list from index 0 up.
+When run as a script, a timeit function runs insertion_sort() on a list of 200 random integers three times, and returns the run time for each.
+
 
