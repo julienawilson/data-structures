@@ -1,5 +1,6 @@
 """Insertion sort."""
 
+
 def insertion_sort(some_list):
     """It sorts."""
     if not hasattr(some_list, "__iter__"):
