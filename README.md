@@ -1,6 +1,11 @@
 [![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=master)](https://travis-ci.org/julienawilson/data-structures)
 
 # Data Structures
+=======
+[![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=bst)](https://travis-ci.org/julienawilson/data-structures)
+
+# data-structures
+>>>>>>> 2f8af436a8271e1a77876030b065993c23274041
 Patrick Saunders and Julien Wilson
 <br>
 Data Structures created in Python401
@@ -26,7 +31,7 @@ A linked list that points in both directions
 A tree of nodes sorted by values less than and greater than root branching to the left and right, respectively.
 
 Methods include:
-* insert(self, val): Insert value into tree; if value already exists, ignore it.
+* insert(self, val): Insert value into tree; if value already exists, ignore it. Method autobalances after insertion, and tree size increments by one.
 * search(self, val): Return node containing that value, else None.
 * size(self): Return number of nodes/vertices in tree, 0 if empty.
 * depth(self): Return number of levels in tree. Tree with one value has depth of 0.
@@ -35,3 +40,34 @@ Methods include:
     Trees that are higher on the left than the right should return a positive value;
     trees that are higher on the right than the left should return a negative value;
     an ideally-balanced tree should return 0.
+* in_order(self): Return a generator that returns each node value from in-order traversal.
+* pre_order(self): Return a generator that returns each node value from pre-order traversal.
+* post_order(self): Return a generator that returns each node value from post_order traversal.
+* breadth_first(self): Return a generator returns each node value from breadth-first traversal.
+* delete(value): Delete a node's connections (edges), effectively deleting node. Method autobalances after deletion, and tree size decrements by one.
+
+##Hash Table
+Stores key-value pairs using a given hashing algorithm. Choices for hashing algorithms are additive hash and xor hash. 
+Additive hash sums the Unicode code point for each letter in the word or string, then calls modulo with the number of buckets in the table.
+XOR hash runs exclusive or with the letters of the word or string.
+
+Methods include:
+set(key, value): Add a key-value pair to the hash table.
+get(key): Retrieve a value for the given key.
+
+##Trie Trees
+Module is an implementation of a trie tree, using nested dictionaries instead of nodes.
+
+Words branch out from root, with root's immediate children being
+the initial letter of each word. Words can then branch from that initial,
+as well as from initial substrings.
+
+Methods include:
+contains(word): Check to see whether a word is in the tree. O(k), where k is the length of the given word.
+insert(word): Inserts a word into the trie tree. O(k), where k is the length of the given word.
+
+##Insertion Sort
+Sorts a list in-place, iterating through the list, reordering the list from index 0 up.
+When run as a script, a timeit function runs insertion_sort() on a list of 200 random integers three times, and returns the run time for each.
+
+
