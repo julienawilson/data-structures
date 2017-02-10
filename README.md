@@ -2,10 +2,6 @@
 
 # Data Structures
 =======
-[![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=bst)](https://travis-ci.org/julienawilson/data-structures)
-
-# data-structures
->>>>>>> 2f8af436a8271e1a77876030b065993c23274041
 Patrick Saunders and Julien Wilson
 <br>
 Data Structures created in Python401
