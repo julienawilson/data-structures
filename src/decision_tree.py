@@ -1,5 +1,6 @@
 """Decision Tree."""
 
+
 class TreeNode(Object):
     """Node for the decision tree."""
 
@@ -21,20 +22,17 @@ class DecisionTree(Object):
 
     def fit(self, columns, labels):
         """Build the decision tree's brain."""
-        self.root = TreeNode(data_idx=columns.index) #  flowers.index
+        self.root = TreeNode(data_idx=columns.index)  # flowers.index
+        self.columns = columns
         node = self.root
         while True:
             self.split(node)
-            node = node.left # maybe?
-    
-    def predict(self, columns):
-        """Apply model to new datapoints."""
-        pass
+            node = node.left  # maybe?
 
     def _split(self, node):
         """Split the values."""
         node.column, node.split = best_split_alg(node)
-        
+
         left_idx = idx or values in column where value < split
         node.left = TreeNode(data_idx=left_idx)
         if len(node.left.data_idx) <= 1 or len(set(node.left.labels)) <= 1:
@@ -44,3 +42,18 @@ class DecisionTree(Object):
 
     def best_split_alg(self, node):
         """Find the best column and split point, given a node with a dataset."""
+        for val in flowers_data[0]:
+            left_list=[labels[idx] for idx in data_idx if flowers_data[0][idx] <= val]
+            right_list=[labels[idx] for idx in data_idx if flowers_data[0][idx] > val]
+            print(left_list, right_list,
+                  left_list.count(1)/len(left_list) * right_list.count(0)/len(right_list), 
+                  left_list.count(0)/len(left_list) * right_list.count(1)/len(right_list),
+                  right_list.count(0),
+                  left_list.count(0),
+                  len(right_list),
+                  len(left_list))
+
+
+    def predict(self, columns):
+        """Apply model to new datapoints."""
+        pass
