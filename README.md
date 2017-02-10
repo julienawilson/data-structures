@@ -73,4 +73,4 @@ merge(list1, list2): A helper function to do the comparisons between values.
 ##Radix Sort
 Module sorts a list using the radix algorithm, breaking up numbers and ordering them by digits of the same significance.
 The primary method, radix_sort(), has a helper function, grab_digit(), that takes a number and the magnitude to return the next digit to sort the nummber by.
-The time complexity of radix sort is O(nk); the algorithm walks each number in the digit, walking the list n times, and also walks each digit of each number.
+The time complexity of radix sort is O(nk); the algorithm walks each number in the list, or n times, and also walks each digit of each number.
