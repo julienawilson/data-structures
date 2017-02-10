@@ -19,6 +19,8 @@ def insertion_sort(some_list):
         idx += 1
     return some_list
 
+<<<<<<< HEAD
+=======
 if __name__ == "__main__":
 
     import timeit
@@ -36,3 +38,4 @@ if __name__ == "__main__":
                         number=1000
                         )
           )
+>>>>>>> b701e852f33a1b6b106abc41a7234c2fb1e0b8c3
