@@ -21,3 +21,8 @@ def test_find_mean(kmc, some_data):
     """Unit test for find mean."""
     data_means = kmc._find_mean(some_data)
     assert data_means == [3.75, 4.25]
+
+
+def test_calc_distance(kmc):
+    """Test distance calculator helper method."""
+    assert kmc._calc_distance([0, 0, 0, 0], [3, 4, 0, 0]) == 5.0
