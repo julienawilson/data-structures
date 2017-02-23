@@ -38,9 +38,7 @@ def test_calc_distance(kmc):
     assert kmc._calc_distance([0, 0, 0, 0], [3, 4, 0, 0]) == 5.0
 
 
-def test_random_centroids(kmc):
-    """Test that 2 random centroids chosen given a data set to use."""
-    dataset = [[1,2,7,3], [5,4,3,8], [5,3,1,7], [7,2,9,11]]
-    assert len(kmc._random_centroids(dataset, 2)) == 2
-    assert len(kmc._random_centroids(dataset, 2)[0]) == 2
-    assert len(kmc._random_centroids(dataset, 2)[1]) == 2
+def test_fit(kmc, some_data):
+   """Test that fit applies classifications."""
+   kmc.fit(some_data)
+   assert kmc.fitted
