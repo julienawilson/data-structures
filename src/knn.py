@@ -1,6 +1,11 @@
 """Implementation of the K-nearest neighbors classifier.
 
 Categorize new data based on labels of the K closest data points.
+
+There's one public method:
+predict(self, new_points, k=None): Takes in a new dataset, and defaults its search
+for k neighbors to KNN onject default of 5. Returns the likely class/grouping 
+for each set of data in the dataset, based on the k nearest neighbors.
 """
 import numpy as np
 

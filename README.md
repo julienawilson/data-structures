@@ -73,3 +73,11 @@ When run as a script, a timeit function runs merge_sort() on a list of 200 rando
 Methods include:
 merge_sort(a_list): Recursively divides list at midpoint, more or less.
 merge(list1, list2): A helper function to do the comparisons between values.
+
+##K-Nearest Neighbors Classifier
+Categorize new data based on labels of the *k* closest data points.
+
+Public method:
+predict(self, new_points, k=None): Takes in a new dataset, and defaults its search
+for *k* neighbors to KNN onject default of 5. Returns the likely class/grouping 
+for each set of data in the dataset, based on its *k* nearest neighbors.
