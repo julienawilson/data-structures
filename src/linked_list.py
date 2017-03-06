@@ -56,9 +56,16 @@ class LinkedList(object):
         elif remove_node is None:
             raise ValueError("Provided value not in list.")
         current_node = self.head_node
-        while current_node.next_node != remove_node:
+        while True:
+            if current_node.next_node == remove_node:
+                break
+            if current_node.next_node is None:
+                raise ValueError("Provided value not in list.")
             current_node = current_node.next_node
-        current_node.next_node = current_node.next_node.next_node
+        try:
+            current_node.next_node = current_node.next_node.next_node
+        except AttributeError:
+            pass
         self.length -= 1
 
     def display(self):

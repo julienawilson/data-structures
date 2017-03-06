@@ -108,6 +108,13 @@ def test_linkedlist_remove():
     assert new_llist.search(4).next_node.contents == 2
 
 
+def test_linkedlist_remove_lastnode():
+    """Test LinkedList remove() on a list."""
+    one_llist, empty_llist, new_llist = sample_linked_list()
+    new_llist.remove(new_llist.search(5))
+    assert new_llist.search(5) is None
+
+
 def test_linkedlist_remove_head():
     """Test LinkedList remove() the head on a list."""
     one_llist, empty_llist, new_llist = sample_linked_list()
