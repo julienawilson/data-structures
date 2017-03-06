@@ -94,6 +94,13 @@ def test_linkedlist_search_empty():
     assert empty_llist.search(2) is None
 
 
+def test_linkedlist_remove_from_empty():
+    """Test for LinkedList remove empty list."""
+    one_llist, empty_llist, new_llist = sample_linked_list()
+    with pytest.raises(ValueError):
+        empty_llist.remove(empty_llist.search(2))
+
+
 def test_linkedlist_search_list_false():
     """Test for LinkedList search list when search value is not in list."""
     one_llist, empty_llist, new_llist = sample_linked_list()
@@ -122,7 +129,7 @@ def test_linkedlist_remove_head():
     assert new_llist.head_node.contents == 4
 
 
-def test_linkedlist_remove_empty():
+def test_linkedlist_remove_none():
     """Test LinkedList remove() on a list list."""
     one_llist, empty_llist, new_llist = sample_linked_list()
     with pytest.raises(ValueError):

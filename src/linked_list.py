@@ -49,6 +49,8 @@ class LinkedList(object):
 
     def remove(self, remove_node):
         """Remove a node from linked list."""
+        if not self.length:
+            raise ValueError("This list is empty")
         if remove_node == self.head_node:
             self.head_node = self.head_node.next_node
             self.length -= 1
