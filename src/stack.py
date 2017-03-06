@@ -9,7 +9,6 @@ class Stack(object):
     def __init__(self, iterable=None):
         """Instantiate stack."""
         self.linked_list = LinkedList(iterable)
-        self.length = self.linked_list.length
         self.head_node = self.linked_list.head_node
 
     def push(self, contents):

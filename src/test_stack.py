@@ -13,22 +13,10 @@ def sample_stack():
     return one_stack, empty_stack, new_stack
 
 
-def test_stack_empty_length():
-    """Test for empty stack length."""
-    one_stack, empty_stack, new_stack = sample_stack()
-    assert empty_stack.length == 0
-
-
 def test_stack_empty_head_node():
     """Test for empty stack head node."""
     one_stack, empty_stack, new_stack = sample_stack()
     assert empty_stack.head_node is None
-
-
-def test_stack_new_length():
-    """Test for new stack length."""
-    one_stack, empty_stack, new_stack = sample_stack()
-    assert new_stack.length == 5
 
 
 def test_stack_new_contents():
