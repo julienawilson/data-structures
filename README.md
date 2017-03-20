@@ -2,10 +2,6 @@
 
 # Data Structures
 =======
-[![Build Status](https://travis-ci.org/julienawilson/data-structures.svg?branch=bst)](https://travis-ci.org/julienawilson/data-structures)
-
-# data-structures
->>>>>>> 2f8af436a8271e1a77876030b065993c23274041
 Patrick Saunders and Julien Wilson
 <br>
 Data Structures created in Python401
@@ -73,3 +69,8 @@ When run as a script, a timeit function runs merge_sort() on a list of 200 rando
 Methods include:
 merge_sort(a_list): Recursively divides list at midpoint, more or less.
 merge(list1, list2): A helper function to do the comparisons between values.
+
+##Radix Sort
+Module sorts a list using the radix algorithm, breaking up numbers and ordering them by digits of the same significance.
+The primary method, radix_sort(), has a helper function, grab_digit(), that takes a number and the magnitude to return the next digit to sort the nummber by.
+The time complexity of radix sort is O(nk); the algorithm walks each number in the list, or n times, and also walks each digit of each number.
